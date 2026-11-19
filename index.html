@@ -450,7 +450,7 @@ function ajustaFixa(){try{const t=document.querySelector('.top'),l=document.getE
 const MOVEL=!!(/Android|iPhone|iPad|iPod|Mobile|Silk/i.test(navigator.userAgent||'')||((window.matchMedia&&matchMedia('(pointer:coarse)').matches)&&innerWidth<820));
 document.documentElement.classList.toggle('movel',MOVEL);
 const HOSP=/^https?:/.test(location.protocol);document.documentElement.classList.toggle('hosp',HOSP);
-const VER='2026.11.19d';
+const VER='2026.11.19e';
 let DG=['v'+VER,'JavaScript ativo'];
 {let ls='ok';try{localStorage.setItem('_k','1');localStorage.removeItem('_k')}catch(e){ls='bloqueado'}DG.push('armazenamento '+ls)}
 try{const pk=document.getElementById('pacote');
@@ -2092,10 +2092,13 @@ function welcDraw(){
   const dg=diagTexto(WDIAG);
   let h2;
   if(dg)h2=dg;
+  else if(PODEINST&&WDIAG&&WDIAG.manifest==='ok'&&WDIAG.sw)h2='<div class="wios"><b>O Kostta provavelmente já está instalado neste celular.</b><br>Procure o ícone <b>Kostta</b> na tela inicial ou na lista de aplicativos e abra por ele.</div>'
+   +'<div class="mn" style="margin-top:10px">'
+   +'<div class="l"><span class="k">⋮</span><span class="mt"><b>Se não achar o ícone:</b> toque no menu <b>⋮</b> e escolha <b>Instalar app</b> ou <b>Adicionar à tela inicial</b><i>o item some do menu quando o app já está instalado</i></span></div></div>';
   else if(PODEINST)h2='<div class="mn">'
    +'<div class="l"><span class="k">⋮</span><span class="mt"><b>1.</b> Toque no menu <b>⋮</b><i>no canto superior direito da tela</i></span></div>'
    +'<div class="l"><span class="k">↓</span><span class="mt"><b>2.</b> Escolha <b>Instalar app</b><i>ou "Adicionar à tela inicial" → Instalar</i></span></div></div>'
-   +'<p class="wd">O botão automático só aparece na primeira visita. Se o Kostta já estiver instalado, abra pelo ícone na tela inicial.</p>';
+   +'<p class="wd">O botão automático só aparece na primeira visita.</p>';
   else h2='<div class="wios">'+NAVFRASE+'<br>Abra o <b>Chrome</b> e use lá este endereço:<br><b>'+esc(location.host+location.pathname)+'</b></div>';
   a.innerHTML=h2+(ANDROID&&!PODEINST?'<a class="big" id="wchrome" href="'+INTENT+'">Abrir no Chrome</a><button class="big2" id="wcopy">Copiar endereço</button>':'');
   sb2.textContent=dg?'Precisa de um ajuste no site':(PODEINST?'Instale pelo menu do navegador':'Abra no Chrome para instalar');
