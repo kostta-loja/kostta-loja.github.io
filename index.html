@@ -432,6 +432,7 @@ const DEF={v:2,vt:1,pack:'fd,fdo,fardo,cx,cxa,cxs,caixa,dp,display,pack',mk:60,d
 const SP=LS.get('params',{});if(SP.v!==2){delete SP.ded;delete SP.min;delete SP.max}
 let P=Object.assign({},DEF,SP);
 let G=LS.get('grade',null), idx=new Map(), byCod=new Map(), SR={}, raw=[], filtro='todos', demo=false;
+try{G=limpaGrade(G)}catch(e){}
 let adj=new Set(LS.get('adj',[])), EMB=LS.get('emb',{}), FORN=LS.get('forn',{}), HIST=LS.get('hist',[]), MEM=LS.get('mem',{}), LINK=LS.get('link',{}), LKTS=LS.get('lkts',{}), VISTA=LS.get('vista','completa'), CHAVE='', CHV=LS.get('chv',{});
 
 const nz=s=>String(s||'').replace(/\D/g,'').replace(/^0+/,'');
@@ -445,12 +446,19 @@ const H=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpper
 const dec=b=>{try{return new TextDecoder('utf-8',{fatal:true}).decode(b)}catch(e){return new TextDecoder('windows-1252').decode(b)}};
 const arred=v=>P.arr==='90'?Math.ceil(v-0.9-1e-9)+0.9:Math.round(v*100)/100;
 
+const soNum=v=>String(v==null?'':v).replace(/\D/g,'');
+function limpaGrade(g){
+ if(!g||!g.rows||!g.rows.length)return g;
+ let m=0;
+ for(const r of g.rows){const v=String(r[0]==null?'':r[0]);if(/\D/.test(v)){r[0]=soNum(v);m++}}
+ if(m){try{LS.set('grade',g)}catch(e){}}
+ return g}
 function buildIdx(rows){idx=new Map();byCod=new Map();for(const r of rows){const k=nz(r[0]);if(k&&!idx.has(k))idx.set(k,r);if(!byCod.has(r[1]))byCod.set(r[1],r)}}
 function ajustaFixa(){try{const t=document.querySelector('.top'),l=document.getElementById('lbm');if(t&&l)l.style.top=Math.round(t.getBoundingClientRect().height)+'px'}catch(e){}}
 const MOVEL=!!(/Android|iPhone|iPad|iPod|Mobile|Silk/i.test(navigator.userAgent||'')||((window.matchMedia&&matchMedia('(pointer:coarse)').matches)&&innerWidth<820));
 document.documentElement.classList.toggle('movel',MOVEL);
 const HOSP=/^https?:/.test(location.protocol);document.documentElement.classList.toggle('hosp',HOSP);
-const VER='2026.11.19e';
+const VER='2026.11.19f';
 let DG=['v'+VER,'JavaScript ativo'];
 {let ls='ok';try{localStorage.setItem('_k','1');localStorage.removeItem('_k')}catch(e){ls='bloqueado'}DG.push('armazenamento '+ls)}
 try{const pk=document.getElementById('pacote');
@@ -841,7 +849,7 @@ function itemCard(a,pv){
 function itemLinha(a){
  const dn=adj.has(a.key)&&(a.s==='aj'||a.s==='at'),st=dn?['Preço ajustado','c-ok']:SH[a.s];
  const ean=a.ek||'';
- return '<div class="srow" data-st="'+a.s+'"><span class="cd'+(a.cod?'':' nc')+'">'+(a.cod?esc(a.cod):'sem cód.')+'</span><span class="sd">'+esc(a.desc)+(ean?'<br><span class="ean">'+esc(ean)+'</span>':'')+'</span><span class="badge '+st[1]+'">'+st[0]+'</span></div>'}
+ return '<div class="srow" data-st="'+a.s+'"><span class="cd'+(a.cod?'':' nc')+'">'+(a.cod?esc(a.cod):'sem cód.')+'</span><span class="sd">'+esc(a.desc)+(ean?'<br><span class="ean">'+esc(soNum(ean))+'</span>':'')+'</span><span class="badge '+st[1]+'">'+st[0]+'</span></div>'}
 function vincLista(){
  const L=pedidosAbertos().filter(q=>!q[0].nf);
  if(!L.length)return '<p class="hint">Nenhum pedido aguardando nota fiscal. Dá para conferir a nota assim mesmo: veja <b>Cadastro</b> e <b>Margem</b>.</p>';
@@ -1015,7 +1023,7 @@ $('#fg').onchange=async e=>{
   const ib=hd.findIndex(x=>x.includes('BARRA')),ic=c('CODIGO'),ip=c('DESCRICAO DO PRODUTO','PRODUTO'),iv=c('P.VENDA','PRECO VENDA'),ik=c('C.COMP','PRECO CUSTO'),ie=c('*C/ENC.'),io0=c('P.OFERTA'),io=io0>=0?io0:(hd[iv+1]===''?iv+1:-1);
   if(ib<0||ic<0||iv<0)throw new Error('Não encontrei as colunas de código, código de barras e preço de venda.');
   if(rows.slice(hi+1,hi+60).some(r=>/E\+/i.test(r[ib]||'')))throw new Error('Os códigos de barras estão em notação científica. No Excel, formate a coluna como Número sem casas decimais e exporte de novo.');
-  const out=rows.slice(hi+1).filter(r=>/^\d+$/.test((r[ic]||'').trim())&&nz(r[ib]).length>=8).map(r=>[r[ib].trim(),r[ic].trim(),(r[ip]||'').trim(),num(r[iv]),ik<0?0:num(r[ik]),io<0?0:(/^OF$/i.test((r[io]||'').trim())?1:num(r[io])),ie<0?0:num(r[ie])]);
+  const out=rows.slice(hi+1).filter(r=>/^\d+$/.test((r[ic]||'').trim())&&nz(r[ib]).length>=8).map(r=>[soNum(r[ib]),r[ic].trim(),(r[ip]||'').trim(),num(r[iv]),ik<0?0:num(r[ik]),io<0?0:(/^OF$/i.test((r[io]||'').trim())?1:num(r[io])),ie<0?0:num(r[ie])]);
   if(!out.length)throw new Error('A Grade está vazia.');
   G={ts:Date.now(),n:new Set(out.map(r=>r[1])).size,rows:out};demo=false;buildIdx(out);
   const sd=saude(rows,hi,ic,iv,ik,ie),lh=HIST[HIST.length-1],ent=Object.assign({ts:Date.now(),min:P.min,max:P.max,ded:P.ded},sd);
@@ -1221,7 +1229,7 @@ async function gradeBaixa(forcar){
   nuvem('Baixando a Grade publicada…');
   const g=await (await sb('/storage/v1/object/grade/grade.json')).json();
   if(!g.rows||!g.rows.length)throw new Error('arquivo vazio');
-  G={ts:ts||g.ts,n:g.n||g.rows.length,rows:g.rows,src:'nuvem'};buildIdx(G.rows);
+  G={ts:ts||g.ts,n:g.n||g.rows.length,rows:g.rows,src:'nuvem'};limpaGrade(G);buildIdx(G.rows);
   const ok=LS.set('grade',G);draw();
   nuvem('✓ Grade atualizada: '+G.n.toLocaleString('pt-BR')+' produtos.'+(ok?'':' (sem espaço para guardar: vale só nesta sessão)'));return true}
  catch(e){nuvem('Não foi possível baixar a Grade ('+esc(e.message)+').',1);return false}}
@@ -1595,7 +1603,7 @@ function pdAdd(r,q,pc){
   const e0=$('[data-pq="0"]');
   if(e0){try{e0.focus({preventScroll:true})}catch(e){try{e0.focus()}catch(x){}}try{e0.select()}catch(e){}marcaFoco(e0);aoTopo(e0)}
   return}
- const novo={id:pdid(),desc:r[2],q:q||0,pc:pc||0,cod:r[1],ean:r[0],conf:true};
+ const novo={id:pdid(),desc:r[2],q:q||0,pc:pc||0,cod:r[1],ean:soNum(r[0]),conf:true};
  PD.itens.unshift(novo);PD.edit=novo.id;pdsalva();pddraw();pmsg('');
  const el=$('[data-pq="0"]');
  if(el){
@@ -1617,7 +1625,7 @@ function pdBuscaDraw(){
  el.innerHTML='<div class="plist">'
   +'<div class="pbtop"><span>'+(rs.length===1?'1 produto. Toque para incluir.':rs.length+' produtos. Role e toque.')+'</span>'+(MOVEL?'<button class="chip" data-pfk="1">ver a lista inteira</button>':'')+'</div>'
   +rs.map((x,i)=>{const hi=histItem(x[1],x[0],LOJA);
-   return '<button class="pbr'+(!MOVEL&&i===PSEL?' on':'')+'" data-pa="'+esc(x[1])+'"><span class="pbn">'+esc(x[2])+'</span><span class="pbm2">cód. '+esc(x[1])+' · '+R(x[3])+(hi?' · <b style="color:var(--tx)">'+histResumo(hi)+'</b>':'')+(x[0]?'<br><span class="ean">'+esc(x[0])+'</span>':'')+'</span><span class="pbp">+</span></button>'}).join('')
+   return '<button class="pbr'+(!MOVEL&&i===PSEL?' on':'')+'" data-pa="'+esc(x[1])+'"><span class="pbn">'+esc(x[2])+'</span><span class="pbm2">cód. '+esc(x[1])+' · '+R(x[3])+(hi?' · <b style="color:var(--tx)">'+histResumo(hi)+'</b>':'')+(soNum(x[0])?'<br><span class="ean">'+esc(soNum(x[0]))+'</span>':'')+'</span><span class="pbp">+</span></button>'}).join('')
   +'</div>'+(MOVEL?'':'<p class="hint" style="margin:4px 0 0">↑ ↓ para escolher · Enter para adicionar</p>');
  presFlut()}
 function presFlut(){
@@ -1646,7 +1654,7 @@ function pedLinha(i,M){
  const st=statusItemPed(M,i),b=st?OCT[st]:null;
  return '<div class="prow2'+(st==='falta'?' pfal':'')+'"><span class="cd'+(i.cod?'':' nc')+'">'+(i.cod?esc(i.cod):'s/ cód')+'</span>'
   +'<span class="sd">'+esc(i.desc)+(b?' <span class="badge '+b[1]+'">'+b[0]+'</span>':'')+'</span>'
-  +'<span class="qp">'+(i.ean?'<span class="ean">'+esc(i.ean)+'</span> · ':'')+nfmt(i.q)+' × '+R(i.pc)+'</span><b class="st2">'+R((i.q||0)*(i.pc||0))+'</b></div>'}
+  +'<span class="qp">'+(soNum(i.ean)?'<span class="ean">'+esc(soNum(i.ean))+'</span> · ':'')+nfmt(i.q)+' × '+R(i.pc)+'</span><b class="st2">'+R((i.q||0)*(i.pc||0))+'</b></div>'}
 function kped(i){return i.cod?'c'+String(i.cod):(nz(i.ean||'')?'e'+nz(i.ean||''):'d'+H(i.desc||''))}
 function simDesc(a,b){
  const T=x=>new Set(H(x||'').split(/[^A-Z0-9]+/).filter(t=>t.length>=3&&!/^(COM|PARA|UND|PCT|UN|CX|FD|KG|ML|GR|DE|DA|DO|RCK|REF)$/.test(t)));
@@ -1734,12 +1742,12 @@ function ajustesERP(p){
    if(en&&alvo.cod)poe({t:'cruz',desc:alvo.desc,ean:en,cod:alvo.cod,d:'você ligou o EAN '+en+' da nota ao produto '+alvo.cod+': incluir esse código no cadastro do ERP'})})}
  return L}
 function ajLinha(o){const b=AJT[o.t]||AJT.cad;
- return '<div class="ocd"><div class="l1"><span class="nm">'+(o.cod?'<i>'+esc(o.cod)+'</i> · ':'')+esc(o.desc)+'</span><span class="badge '+b[1]+'">'+b[0]+'</span></div><small>'+(o.ean?'<span class="ean">'+esc(o.ean)+'</span> · ':'')+esc(o.d)+'</small></div>'}
+ return '<div class="ocd"><div class="l1"><span class="nm">'+(o.cod?'<i>'+esc(o.cod)+'</i> · ':'')+esc(o.desc)+'</span><span class="badge '+b[1]+'">'+b[0]+'</span></div><small>'+(soNum(o.ean)?'<span class="ean">'+esc(soNum(o.ean))+'</span> · ':'')+esc(o.d)+'</small></div>'}
 function ajTexto(L,n0){
  const z=x=>String(x).padStart(2,'0'),d=new Date();
  return '*Kostta Loja · Ajustes de cadastro no ERP*\n'+'NF '+((n0&&n0.nf)||'—')+' · '+((n0&&n0.forn)||'')+'\n'+z(d.getDate())+'/'+z(d.getMonth()+1)+'/'+d.getFullYear()+'\n\n'
   +L.map(o=>'• '+(o.cod?o.cod+' · ':'')+o.desc+'\n  '+o.d).join('\n')+'\n\nItens: '+L.length}
-function ocLinha(o){return '<div class="ocd"><div class="l1"><span class="nm">'+(o.cod?'<i>'+esc(o.cod)+'</i> · ':'')+esc(o.n)+'</span><span class="badge '+OCT[o.t][1]+'">'+OCT[o.t][0]+'</span></div><small>'+(o.ean?'<span class="ean">'+esc(o.ean)+'</span> · ':'')+esc(o.d)+'</small></div>'}
+function ocLinha(o){return '<div class="ocd"><div class="l1"><span class="nm">'+(o.cod?'<i>'+esc(o.cod)+'</i> · ':'')+esc(o.n)+'</span><span class="badge '+OCT[o.t][1]+'">'+OCT[o.t][0]+'</span></div><small>'+(soNum(o.ean)?'<span class="ean">'+esc(soNum(o.ean))+'</span> · ':'')+esc(o.d)+'</small></div>'}
 function ocOrdena(O){return O.slice().sort((a,b)=>(OCG[a.t]-OCG[b.t])||H(a.n).localeCompare(H(b.n)))}
 const OCT={custo:['Custo acima','c-bad'],qtd:['Quantidade','c-warn'],extra:['Verifique o EAN','c-warn'],novo:['Item a mais','c-ok'],falta:['Não entregue','c-bad'],nenhum:['Nota × pedido','c-bad'],dupl:['Repetido','c-warn'],troca:['Substituição','c-warn'],ok:['Entregue','c-ok']};
 function pdid(){return 'i'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -1752,7 +1760,7 @@ function pdCartao(it,i){
   +'<div class="prow"><b class="pd">'+esc(it.desc)+(it.un?' <span style="font-weight:600;color:var(--mut)">'+esc(it.un)+'</span>':'')+'</b><button class="vx" data-pr="'+i+'">✕</button></div>'
   +'<div class="pqc"><label>Quantidade<input class="pq" inputmode="decimal" enterkeyhint="next" data-pq="'+i+'" value="'+(it.q>0?nfmt(it.q):'')+'" placeholder="qtd"></label>'
   +'<label>Custo<input class="pp" inputmode="decimal" enterkeyhint="done" data-pp="'+i+'" value="'+(it.pc?it.pc.toFixed(2).replace('.',','):'')+'" placeholder="0,00"></label></div>';
- h+=r?'<div class="pg2"><span class="badge '+(it.conf?'c-ok':'c-warn')+'">'+(it.conf?'confirmado':'sugerido')+'</span> <b>'+esc(r[1])+'</b>'+(r[0]?' · <span class="ean">'+esc(r[0])+'</span>':'')+' · '+esc(r[2])+' <button class="chip" data-pt="'+i+'">trocar</button></div>'
+ h+=r?'<div class="pg2"><span class="badge '+(it.conf?'c-ok':'c-warn')+'">'+(it.conf?'confirmado':'sugerido')+'</span> <b>'+esc(r[1])+'</b>'+(soNum(r[0])?' · <span class="ean">'+esc(soNum(r[0]))+'</span>':'')+' · '+esc(r[2])+' <button class="chip" data-pt="'+i+'">trocar</button></div>'
         :'<div class="pg2"><span class="badge c-info">sem produto</span> <button class="chip" data-pt="'+i+'">procurar na Grade</button></div>';
  if(r)h+='<div class="pg"><div><small>Custo ERP</small><b>'+(ce?R(ce):'—')+'</b></div><div><small>Variação</small><b class="'+(dv==null?'':dv>0.001?'r-aj':dv<-0.001?'r-ok':'')+'">'+(dv==null?'—':(dv>0?'▲ +':'▼ −')+(Math.abs(dv)*100).toFixed(1).replace('.',',')+'%')+'</b></div><div><small>Preço atual</small><b>'+(r[3]?R(r[3]):'—')+'</b></div><div><small>Lucro se comprar</small><b class="'+(lucro==null?'':lucro<P.min?'r-aj':lucro>P.max?'r-at':'r-ok')+'">'+(lucro==null?'—':lucro.toFixed(1).replace('.',',')+'%')+'</b></div></div>';
  {const hi=histItem(it.cod,it.ean,LOJA);
@@ -1838,7 +1846,7 @@ function pdFim(){
 function pdEspelho(p){
  const z=n=>String(n).padStart(2,'0'),d=new Date(p.ts);
  return '*Kostta Loja · Espelho do pedido*\n'+(p.loja?esc(p.loja)+'\n':'')+esc(p.forn||'Fornecedor não informado')+(p.prazo?'\nPrazo: '+esc(p.prazo):'')+'\n'+z(d.getDate())+'/'+z(d.getMonth()+1)+'/'+d.getFullYear()+' '+z(d.getHours())+':'+z(d.getMinutes())+'\n\n'
-  +p.itens.map(i=>'• '+nfmt(i.q)+' x '+(i.cod?i.cod+' · ':'')+i.desc+(i.pc?' · '+R(i.pc)+(i.emb>1?' (un '+R(i.pc/i.emb)+')':'')+' = '+R(i.q*i.pc):'')+(i.ean?'\n   cód. barras '+i.ean:'')).join('\n')
+  +p.itens.map(i=>'• '+nfmt(i.q)+' x '+(i.cod?i.cod+' · ':'')+i.desc+(i.pc?' · '+R(i.pc)+(i.emb>1?' (un '+R(i.pc/i.emb)+')':'')+' = '+R(i.q*i.pc):'')+(soNum(i.ean)?'\n   cód. barras '+soNum(i.ean):'')).join('\n')
   +'\n\nItens: '+p.itens.length+'\n*TOTAL DO PEDIDO: '+R(p.total)+'*'}
 async function pdSalva(){
  if(!PD.itens.length){pmsg('Nenhum item para salvar.',1);return}
