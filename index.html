@@ -93,14 +93,11 @@ a.btn{color:var(--tx)}
 #welc .wl{width:170px;max-width:72%;height:62px;border-radius:14px;object-fit:contain;margin:0 auto 14px;display:block;background:#14120D;padding:7px 10px}
 #welc h1{font-size:26px;font-weight:800;letter-spacing:-.02em}
 #welc .ws{font-size:13px;color:var(--mut);margin:6px 0 16px;line-height:1.4}
-#welc ol{list-style:none;text-align:left;margin:0 0 16px}
-#welc li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--bd)}
-#welc li:first-child{border-top:0}
-#welc li .wn{flex:0 0 26px;height:26px;border-radius:50%;background:var(--soft);color:var(--mut);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
-#welc li.ag .wn{background:var(--pri);color:#1C0E00}
-#welc li b{font-size:14.5px;display:block}
-#welc li small{font-size:12px;color:var(--mut);line-height:1.4;display:block;margin-top:1px}
-#welc .big{width:100%;height:54px;font-size:17px;font-weight:800;border-radius:15px;background:var(--pri);border:0;color:#1C0E00;cursor:pointer}
+#welc .wtr{margin-top:14px;font-size:11.5px;color:var(--mut);letter-spacing:.02em}
+#welc .wtr span{color:var(--pri);font-weight:800;margin:0 3px}
+#welc .big2{width:100%;height:54px;font-size:16px;font-weight:800;border-radius:15px;background:var(--card);border:2px solid var(--bd);color:var(--tx);cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;margin-top:10px}
+#welc .wd{font-size:12.5px;color:var(--mut);margin-top:10px;line-height:1.45}
+#welc .big{width:100%;height:56px;font-size:17px;font-weight:800;border-radius:15px;background:var(--pri);border:0;color:#1C0E00;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:inherit}
 #welc .wlk{display:block;width:100%;margin-top:12px;background:0;border:0;color:var(--mut);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
 #welc .wios{background:var(--soft);border-radius:13px;padding:12px 14px;font-size:13.5px;line-height:1.5;text-align:left}
 #welc .wok{color:var(--ok);font-weight:700;font-size:15px;margin-top:4px}
@@ -268,13 +265,9 @@ summary{font-weight:700;font-size:13.5px;cursor:pointer}
 <div id="welc" hidden><div class="wc">
  <img class="wl" id="wlogo" alt="">
  <h1>Kostta Loja</h1>
- <p class="ws">Pedidos de compra · Conferência de recebimento · Venda sem energia</p>
- <ol>
-  <li class="ag"><span class="wn">1</span><span><b>Instalar o aplicativo</b><small>Fica com ícone na tela inicial, abre em tela cheia e funciona sem internet.</small></span></li>
-  <li><span class="wn">2</span><span><b>Entrar com e-mail e senha</b><small>Peça o acesso ao responsável pelo aplicativo.</small></span></li>
-  <li><span class="wn">3</span><span><b>Receber a Grade</b><small>A lista de produtos do ERP baixa sozinha depois do login.</small></span></li>
- </ol>
+ <p class="ws" id="wsub">Instale o aplicativo no seu celular</p>
  <div id="wacao"></div>
+ <p class="wtr">instalar <span>›</span> entrar <span>›</span> receber a Grade</p>
  <button class="wlk" id="wskip">Continuar sem instalar</button>
 </div></div>
 <script>function __e(t){var b=document.getElementById('errbar');if(b){b.hidden=false;b.textContent=t}}window.addEventListener('error',function(e){__e('Erro na página: '+(e.message||'desconhecido')+(e.lineno?' (linha '+e.lineno+')':''))});window.addEventListener('unhandledrejection',function(e){__e('Erro: '+((e.reason&&e.reason.message)||e.reason))});</script>
@@ -451,7 +444,7 @@ function ajustaFixa(){try{const t=document.querySelector('.top'),l=document.getE
 const MOVEL=!!(/Android|iPhone|iPad|iPod|Mobile|Silk/i.test(navigator.userAgent||'')||((window.matchMedia&&matchMedia('(pointer:coarse)').matches)&&innerWidth<820));
 document.documentElement.classList.toggle('movel',MOVEL);
 const HOSP=/^https?:/.test(location.protocol);document.documentElement.classList.toggle('hosp',HOSP);
-const VER='2026.11.19';
+const VER='2026.11.19b';
 let DG=['v'+VER,'JavaScript ativo'];
 {let ls='ok';try{localStorage.setItem('_k','1');localStorage.removeItem('_k')}catch(e){ls='bloqueado'}DG.push('armazenamento '+ls)}
 try{const pk=document.getElementById('pacote');
@@ -2028,7 +2021,10 @@ $('#bupd').onclick=async()=>{
 let EVI=null;
 const APPSO=(()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true||document.referrer.indexOf('android-app://')===0}catch(e){return false}})();
 const IOS=/iPad|iPhone|iPod/.test(navigator.userAgent||'')&&!window.MSStream;
-let WINST=false;
+const ANDROID=/Android/i.test(navigator.userAgent||'');
+const INTENT=(()=>{try{const u=location.protocol+'//'+location.host+location.pathname;
+ return 'intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(u)+';end'}catch(e){return '#'}})();
+let WINST=false,WREADY=false;
 function welcPrecisa(){
  if(APPSO)return false;
  if(LS.get('skipinst'))return false;
@@ -2039,18 +2035,20 @@ function welcDraw(){
  if(!welcPrecisa()){el.hidden=true;document.body.style.overflow='';return}
  const lg=$('#wlogo'),h=document.querySelector('header .in img');
  if(lg&&h&&!lg.src)lg.src=h.src;
- const a=$('#wacao');
- if(WINST)a.innerHTML='<p class="wok">✓ Aplicativo instalado</p><p class="ws" style="margin:6px 0 0">Feche esta janela e abra pelo ícone <b>Kostta</b> na tela inicial.</p>';
- else if(EVI)a.innerHTML='<button class="big" id="wbi">Instalar app</button>';
- else if(IOS)a.innerHTML='<div class="wios">No iPhone, toque no botão <b>Compartilhar</b> (quadrado com a seta para cima) na barra do Safari e depois em <b>Adicionar à Tela de Início</b>.</div>';
- else a.innerHTML='<div class="wios">No menu do navegador (⋮ no canto superior direito), toque em <b>Instalar app</b>. Se aparecer "Adicionar à tela inicial", escolha <b>Instalar</b>.</div>';
+ const a=$('#wacao'),sb2=$('#wsub');
+ if(!WINST&&!EVI&&!IOS&&!WREADY){a.innerHTML='<button class="big" disabled style="opacity:.55">Preparando…</button>';sb2.textContent='Um instante';el.hidden=false;document.body.style.overflow='hidden';return}
+ if(WINST){a.innerHTML='<p class="wok">✓ Aplicativo instalado</p><p class="wd">Feche esta janela e abra pelo ícone <b>Kostta</b> na tela inicial.</p>';sb2.textContent='Tudo certo'}
+ else if(EVI){a.innerHTML='<button class="big" id="wbi">Instalar app</button>';sb2.textContent='Instale o aplicativo no seu celular'}
+ else if(IOS){a.innerHTML='<div class="wios">Toque em <b>Compartilhar</b> na barra do Safari (quadrado com a seta para cima) e depois em <b>Adicionar à Tela de Início</b>.</div>';sb2.textContent='Instale o aplicativo no seu iPhone'}
+ else if(ANDROID){a.innerHTML='<a class="big" id="wchrome" href="'+INTENT+'">Abrir no Chrome</a><p class="wd">Esta janela não instala aplicativos: no Chrome aparece o botão <b>Instalar app</b>.<br>Se o Kostta já estiver instalado neste celular, abra pelo ícone na tela inicial.</p>';sb2.textContent='Falta um passo'}
+ else a.innerHTML='<div class="wios">No menu do navegador (⋮), toque em <b>Instalar app</b>. Se aparecer "Adicionar à tela inicial", escolha <b>Instalar</b>.</div>';
  const b=$('#wbi');if(b)b.onclick=async()=>{if(!EVI)return;b.textContent='Instalando…';EVI.prompt();try{await EVI.userChoice}catch(x){}EVI=null;b.textContent='Instalar app';welcDraw()};
  el.hidden=false;document.body.style.overflow='hidden'}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();EVI=e;$('#binst').hidden=false;welcDraw()});
 window.addEventListener('appinstalled',()=>{WINST=true;EVI=null;$('#binst').hidden=true;welcDraw()});
 $('#binst').onclick=async()=>{if(!EVI)return;EVI.prompt();try{await EVI.userChoice}catch(x){}EVI=null;$('#binst').hidden=true};
 $('#wskip').onclick=()=>{LS.set('skipinst',1);welcDraw()};
-setTimeout(welcDraw,300);
+setTimeout(welcDraw,120);setTimeout(()=>{WREADY=true;welcDraw()},1500);
 if('serviceWorker' in navigator&&HOSP){try{navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}}
 $('#ploja').onchange=e=>{PD.loja=e.target.value;pdsalva()};
 $('#pforn').oninput=e=>{PD.forn=e.target.value.trim().slice(0,60);pdsalva()};
