@@ -444,7 +444,7 @@ function ajustaFixa(){try{const t=document.querySelector('.top'),l=document.getE
 const MOVEL=!!(/Android|iPhone|iPad|iPod|Mobile|Silk/i.test(navigator.userAgent||'')||((window.matchMedia&&matchMedia('(pointer:coarse)').matches)&&innerWidth<820));
 document.documentElement.classList.toggle('movel',MOVEL);
 const HOSP=/^https?:/.test(location.protocol);document.documentElement.classList.toggle('hosp',HOSP);
-const VER='2026.11.19b';
+const VER='2026.11.19c';
 let DG=['v'+VER,'JavaScript ativo'];
 {let ls='ok';try{localStorage.setItem('_k','1');localStorage.removeItem('_k')}catch(e){ls='bloqueado'}DG.push('armazenamento '+ls)}
 try{const pk=document.getElementById('pacote');
@@ -2022,9 +2022,50 @@ let EVI=null;
 const APPSO=(()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true||document.referrer.indexOf('android-app://')===0}catch(e){return false}})();
 const IOS=/iPad|iPhone|iPod/.test(navigator.userAgent||'')&&!window.MSStream;
 const ANDROID=/Android/i.test(navigator.userAgent||'');
+const NAV=(()=>{const u=navigator.userAgent||'';
+ if(/FBAN|FBAV|Instagram|Line\/|WhatsApp/i.test(u))return 'navegador de dentro de um aplicativo';
+ if(/; wv\)/.test(u))return 'janela de outro aplicativo';
+ if(/SamsungBrowser/i.test(u))return 'Samsung Internet';
+ if(/MiuiBrowser|XiaoMi/i.test(u))return 'navegador da Xiaomi';
+ if(/HuaweiBrowser|HeyTap|OppoBrowser|VivoBrowser/i.test(u))return 'navegador do fabricante';
+ if(/EdgA|Edg\//i.test(u))return 'Microsoft Edge';
+ if(/OPR|Opera/i.test(u))return 'Opera';
+ if(/Firefox|FxiOS/i.test(u))return 'Firefox';
+ if(/CriOS|Chrome\//i.test(u))return 'Chrome';
+ if(/Safari/i.test(u))return 'Safari';
+ return 'navegador deste celular'})();
+const ECHROME=NAV==='Chrome';
+const PODEINST=/^(Chrome|Samsung Internet|Microsoft Edge|Opera)$/.test(NAV);
+const NAVFRASE=/^(Chrome|Samsung Internet|Microsoft Edge|Opera|Firefox|Safari)$/.test(NAV)?('O <b>'+NAV+'</b> não instala aplicativos neste celular.'):'Esta janela não instala aplicativos.';
 const INTENT=(()=>{try{const u=location.protocol+'//'+location.host+location.pathname;
  return 'intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(u)+';end'}catch(e){return '#'}})();
 let WINST=false,WREADY=false;
+let WDIAG=null,WJAINST=false;
+async function diagInst(){
+ const seg=location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1';
+ const r={https:seg,manifest:null,icones:[],sw:0,erro:''};
+ try{
+  const nc='?d='+Date.now();
+  const m=await fetch('manifest.webmanifest'+nc,{cache:'no-store'});
+  r.manifest=m.ok?'ok':('HTTP '+m.status);
+  if(m.ok){const j=await m.json();r.display=j.display;
+   for(const ic of (j.icons||[])){
+    try{const h=await fetch(ic.src+nc,{cache:'no-store'});if(!h.ok)r.icones.push(ic.src+' (HTTP '+h.status+')')}
+    catch(e){r.icones.push(ic.src+' (não encontrado)')}}}
+ }catch(e){r.manifest='não encontrado';r.erro=String(e&&e.message||e)}
+ try{const regs=await navigator.serviceWorker.getRegistrations();r.sw=regs.length}catch(e){r.sw=0}
+ r.nav=NAV;
+ try{if(navigator.getInstalledRelatedApps){const L=await navigator.getInstalledRelatedApps();if(L&&L.length)WJAINST=true}}catch(e){}
+ return r}
+function diagTexto(d){
+ if(!d)return '';
+ const f=[];
+ if(!d.https)f.push('o endereço precisa ser https');
+ if(d.manifest!=='ok')f.push('falta o arquivo <b>manifest.webmanifest</b> no site ('+esc(d.manifest||'?')+')');
+ if(d.icones.length)f.push('faltam ícones no site: '+esc(d.icones.join(', ')));
+ if(!d.sw)f.push('o funcionamento offline ainda não registrou');
+ if(!f.length)return '';
+ return '<div class="wios" style="margin-top:10px"><b>O celular não oferece a instalação porque:</b><br>• '+f.join('<br>• ')+'</div>'}
 function welcPrecisa(){
  if(APPSO)return false;
  if(LS.get('skipinst'))return false;
@@ -2040,15 +2081,34 @@ function welcDraw(){
  if(WINST){a.innerHTML='<p class="wok">✓ Aplicativo instalado</p><p class="wd">Feche esta janela e abra pelo ícone <b>Kostta</b> na tela inicial.</p>';sb2.textContent='Tudo certo'}
  else if(EVI){a.innerHTML='<button class="big" id="wbi">Instalar app</button>';sb2.textContent='Instale o aplicativo no seu celular'}
  else if(IOS){a.innerHTML='<div class="wios">Toque em <b>Compartilhar</b> na barra do Safari (quadrado com a seta para cima) e depois em <b>Adicionar à Tela de Início</b>.</div>';sb2.textContent='Instale o aplicativo no seu iPhone'}
- else if(ANDROID){a.innerHTML='<a class="big" id="wchrome" href="'+INTENT+'">Abrir no Chrome</a><p class="wd">Esta janela não instala aplicativos: no Chrome aparece o botão <b>Instalar app</b>.<br>Se o Kostta já estiver instalado neste celular, abra pelo ícone na tela inicial.</p>';sb2.textContent='Falta um passo'}
- else a.innerHTML='<div class="wios">No menu do navegador (⋮), toque em <b>Instalar app</b>. Se aparecer "Adicionar à tela inicial", escolha <b>Instalar</b>.</div>';
+ else if(WJAINST){a.innerHTML='<p class="wok">✓ O aplicativo já está instalado</p><p class="wd">Abra pelo ícone <b>Kostta</b> na tela inicial do celular.</p>';sb2.textContent='Tudo certo'}
+ else{
+  const dg=diagTexto(WDIAG);
+  let h2;
+  if(dg)h2=dg;
+  else if(PODEINST)h2='<div class="wios">Toque no menu <b>⋮</b> do navegador e escolha <b>Instalar app</b>, ou <b>Adicionar à tela inicial</b> → <b>Instalar</b>.<br>Se o Kostta já estiver instalado neste celular, abra pelo ícone na tela inicial.</div>';
+  else h2='<div class="wios">'+NAVFRASE+'<br>Abra o <b>Chrome</b> e use lá este endereço:<br><b>'+esc(location.host+location.pathname)+'</b></div>';
+  a.innerHTML=h2+(ANDROID&&!PODEINST?'<a class="big" id="wchrome" href="'+INTENT+'">Abrir no Chrome</a><button class="big2" id="wcopy">Copiar endereço</button>':'');
+  sb2.textContent=dg?'Precisa de um ajuste no site':(PODEINST?'Instale pelo menu do navegador':'Abra no Chrome para instalar');
+  a.innerHTML+='<button class="wlk" id="wdet" style="margin-top:8px">detalhes técnicos</button><div id="wdt" hidden></div>'}
+ {const dt=$('#wdet');if(dt)dt.onclick=()=>{const z=$('#wdt');if(!z)return;
+  const d=WDIAG||{};
+  z.innerHTML='<div class="wios" style="margin-top:8px;font-size:12px;word-break:break-word">navegador: <b>'+esc(NAV)+'</b><br>manifest: <b>'+esc(String(d.manifest||'não verificado'))+'</b><br>ícones: <b>'+esc(d.icones&&d.icones.length?d.icones.join(', '):'ok')+'</b><br>offline (SW): <b>'+esc(String(d.sw||0))+'</b> · https: <b>'+((d.https===false)?'não':'sim')+'</b><br>versão: <b>'+esc(VER)+'</b><br>'+esc((navigator.userAgent||'').slice(0,110))+'</div>';
+  z.hidden=false;dt.hidden=true}}
+ {const c=$('#wcopy');if(c)c.onclick=async()=>{
+  const u=location.protocol+'//'+location.host+location.pathname;
+  try{await navigator.clipboard.writeText(u);c.textContent='✓ Endereço copiado'}
+  catch(e){c.outerHTML='<div class="wios" style="margin-top:10px">Copie à mão: <b>'+esc(u)+'</b></div>'}}}
  const b=$('#wbi');if(b)b.onclick=async()=>{if(!EVI)return;b.textContent='Instalando…';EVI.prompt();try{await EVI.userChoice}catch(x){}EVI=null;b.textContent='Instalar app';welcDraw()};
  el.hidden=false;document.body.style.overflow='hidden'}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();EVI=e;$('#binst').hidden=false;welcDraw()});
 window.addEventListener('appinstalled',()=>{WINST=true;EVI=null;$('#binst').hidden=true;welcDraw()});
 $('#binst').onclick=async()=>{if(!EVI)return;EVI.prompt();try{await EVI.userChoice}catch(x){}EVI=null;$('#binst').hidden=true};
 $('#wskip').onclick=()=>{LS.set('skipinst',1);welcDraw()};
-setTimeout(welcDraw,120);setTimeout(()=>{WREADY=true;welcDraw()},1500);
+setTimeout(welcDraw,120);
+setTimeout(async()=>{
+ if(!EVI&&!IOS&&welcPrecisa()){try{WDIAG=await diagInst()}catch(e){}}
+ WREADY=true;welcDraw()},1500);
 if('serviceWorker' in navigator&&HOSP){try{navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}}
 $('#ploja').onchange=e=>{PD.loja=e.target.value;pdsalva()};
 $('#pforn').oninput=e=>{PD.forn=e.target.value.trim().slice(0,60);pdsalva()};

@@ -28,5 +28,13 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "id": "/",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://kostta-loja.github.io/manifest.webmanifest"
+    }
+  ],
+  "prefer_related_applications": false
 }
