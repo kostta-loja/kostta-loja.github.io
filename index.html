@@ -118,6 +118,31 @@ a.btn{color:var(--tx)}
 .gb.on{border-color:var(--pri);box-shadow:0 0 0 3px var(--glow)}
 .gcont{border-top:1px solid var(--bd);margin-top:10px;padding-top:8px}
 .mt1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Liberar · fila */
+.tabs button{position:relative}
+.tabs .bdg{position:absolute;top:2px;left:calc(50% + 5px);min-width:17px;height:17px;border-radius:99px;background:var(--bad);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px;line-height:1}
+.lbr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 9px;align-items:start;background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--warn);border-radius:12px;padding:10px 11px;margin-bottom:7px}
+.lbr.vl{border-left-color:var(--bad)}
+.lbr.ft{border-left-color:var(--ok);opacity:.72}
+.lbr .ln{grid-column:1;font-size:14px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}
+.lbr .lt{grid-column:2;grid-row:1;display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:var(--warn);white-space:nowrap;font-variant-numeric:tabular-nums}
+.lbr.vl .lt{color:var(--bad)}.lbr.ft .lt{color:var(--ok)}
+.lbr .lx{width:24px;height:24px;border-radius:50%;border:1px solid var(--bd);background:var(--bg);color:var(--mut);font-size:12px;line-height:1;cursor:pointer;padding:0}
+.lbr .lm{grid-column:1/3;font-size:11px;color:var(--mut);line-height:1.45;overflow-wrap:anywhere}
+.lbr .lf{grid-column:1/3;font-size:11px;color:var(--mut);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lbr .ld{grid-column:1/3;font-size:12px;color:var(--tx);line-height:1.45;margin-top:3px;overflow-wrap:anywhere}
+.lbr .la{grid-column:1/3;display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.lbr .la .btn{margin:0;height:36px;font-size:13px;padding:0 13px}
+.lhd{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0 4px}
+.lhd>div{background:var(--bg);border-radius:11px;padding:9px 10px}
+.lhd small{display:block;font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.lhd b{font-size:17px;font-weight:800;display:block;margin-top:2px}
+.lhd b.w{color:var(--warn)}.lhd b.g{color:var(--ok)}
+.mais{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
+.mb{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px 13px;border:1px solid var(--bd);border-radius:14px;background:var(--bg);color:var(--tx);font:inherit;text-align:left;cursor:pointer}
+.mb svg{width:22px;height:22px;stroke:var(--pri);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;margin-bottom:3px}
+.mb b{font-size:14.5px;font-weight:750}
+.mb small{font-size:11.5px;color:var(--mut);line-height:1.35}
 /* Conferir · lista unica */
 .cfc{display:flex;gap:6px;overflow-x:auto;margin:10px -2px 8px;padding:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cfc::-webkit-scrollbar{display:none}
@@ -460,14 +485,26 @@ summary{font-weight:700;font-size:13.5px;cursor:pointer}
   <p class="hint" style="margin-top:10px">Instalar: Android (Chrome) menu ⋮ e Instalar app · iPhone (Safari) Compartilhar e Adicionar à Tela de Início.</p>
 </section>
 </div>
+<div class="view" id="v-lib">
+<section class="box" id="libw"></section>
+</div>
+<div class="view" id="v-mais">
+<section class="box">
+  <b class="t">Mais</b>
+  <div class="mais">
+    <button class="mb" data-mais="vend"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 10.3a2 2 0 0 0 2 1.7h6.9a2 2 0 0 0 2-1.6L20 7H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><b>Modo Blecaute</b><small>vender sem energia, pelo código do produto</small></button>
+    <button class="mb" data-mais="hist"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg><b>Histórico de compras</b><small>preço, volume e intervalo por produto</small></button>
+    <button class="mb" data-mais="grade"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg><b>Grade do ERP</b><small>carregar e publicar a base de produtos</small></button>
+    <button class="mb" data-mais="aj"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><b>Ajustes</b><small>nuvem, lojas, prazos, margens e versão</small></button>
+  </div>
+</section>
+</div>
 </main>
 <nav class="tabs"><div class="in">
   <button id="t-ped" data-tab="ped"><svg viewBox="0 0 24 24"><path d="M8 4h9a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7"/><path d="M9 9h7M9 13h7M9 17h4"/><path d="M5 4h3v3"/></svg>Pedidos</button>
   <button class="on" id="t-conf" data-tab="conf"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg>Conferir</button>
-  <button id="t-vend" data-tab="vend"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 10.3a2 2 0 0 0 2 1.7h6.9a2 2 0 0 0 2-1.6L20 7H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>Vendas</button>
-
-  <button id="t-grade" data-tab="grade"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>Grade</button>
-  <button id="t-aj" data-tab="aj"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Ajustes</button>
+  <button id="t-lib" data-tab="lib"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 7.5-2"/><path d="M12 14v2"/></svg>Liberar<span class="bdg" id="libn" hidden>0</span></button>
+  <button id="t-mais" data-tab="mais"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Mais</button>
 </div></nav>
 
 <script>
@@ -504,7 +541,7 @@ function ajustaFixa(){try{const t=document.querySelector('.top'),l=document.getE
 const MOVEL=!!(/Android|iPhone|iPad|iPod|Mobile|Silk/i.test(navigator.userAgent||'')||((window.matchMedia&&matchMedia('(pointer:coarse)').matches)&&innerWidth<820));
 document.documentElement.classList.toggle('movel',MOVEL);
 const HOSP=/^https?:/.test(location.protocol);document.documentElement.classList.toggle('hosp',HOSP);
-const VER='2026.11.25a';
+const VER='2026.11.25b';
 let DG=['v'+VER,'JavaScript ativo'];
 {let ls='ok';try{localStorage.setItem('_k','1');localStorage.removeItem('_k')}catch(e){ls='bloqueado'}DG.push('armazenamento '+ls)}
 try{const pk=document.getElementById('pacote');
@@ -901,21 +938,161 @@ function vincLista(){
  if(!L.length)return '<p class="hint">Nenhum pedido aguardando nota fiscal. Dá para conferir a nota assim mesmo: veja <b>Cadastro</b> e <b>Margem</b>.</p>';
  return '<p class="t2">Qual pedido é esta nota?</p>'+L.map(q=>{const p=q[0];
   return '<div class="oc" style="grid-template-columns:minmax(0,1fr) auto"><b>'+esc(p.forn||'sem fornecedor')+'</b><button class="chip" data-pnf="'+q[1]+'">vincular</button><small>'+(p.loja?esc(p.loja)+' · ':'')+hora(p.ts)+' · '+p.itens.length+' itens · '+R(p.total)+'</small></div>'}).join('')}
+/* ===== Liberar: a fila que a retaguarda resolve ===== */
+let LIB=LS.get('lib',[]),LIBTS=LS.get('libts',0),LFIL='todas',LFEI=false,LSEL='';
+function libSalva(){if(LIB.length>400)LIB=LIB.slice(-400);LS.set('lib',LIB);LS.set('libts',LIBTS);libBadge()}
+function libCh(o){return [o.loja||'',o.nf||'',o.cod||o.ean||H(o.desc||''),o.mot||''].join('|')}
+function libAberta(){return LIB.filter(o=>o.st!=='feito')}
+function libBadge(){const el=$('#libn');if(!el)return;const n=libAberta().length;el.hidden=!n;el.textContent=n>99?'99+':String(n)}
+function espera(ms){
+ const m=Math.max(1,Math.round(ms/60000));
+ if(m<60)return m+' min';
+ const h=Math.floor(m/60),r=m%60;
+ if(h<24)return h+'h'+(r?String(r).padStart(2,'0'):'');
+ const d=Math.floor(h/24);return d+(d===1?' dia':' dias')}
+function libId(){return 'L'+Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
+function libPoe(o){
+ const ch=libCh(o),i=LIB.findIndex(y=>y.ch===ch);
+ if(i>=0){const x=LIB[i];
+  if(x.st==='feito'){x.st='aberto';x.ts=Date.now();x.fts=0;x.fnota=''}
+  if(o.det)x.det=o.det;
+  if(o.forn)x.forn=o.forn;
+  libSalva();libEnvia(x).catch(()=>{});return x}
+ const n=Object.assign({id:libId(),ts:Date.now(),st:'aberto',fts:0,fnota:'',ch:ch},o);
+ LIB.unshift(n);libSalva();libEnvia(n).catch(()=>{});return n}
+function libDeConf(x,q){
+ const n0=raw[0]||{},pv=pedVinc();
+ return libPoe({loja:(pv&&pv.loja)||LOJA||'',nf:String(n0.nf||''),forn:n0.forn||'',cnpj:n0.cnpj||'',
+  cod:x.cod||'',ean:x.ean||'',desc:x.nome||'',mot:q.t,det:q.d||''})}
+function libConfere(L){
+ if(!raw.length||demo)return;
+ const n0=raw[0]||{},pv=pedVinc(),loja=(pv&&pv.loja)||LOJA||'',nf=String(n0.nf||'');
+ const vivos=new Set();
+ L.forEach(x=>x.Q.forEach(o=>{if(!SEMFILA[o.t])vivos.add(libCh({loja:loja,nf:nf,cod:x.cod||'',ean:x.ean||'',desc:x.nome||'',mot:o.t}))}));
+ let n=0;
+ LIB.forEach(o=>{
+  if(o.st==='feito'||o.loja!==loja||String(o.nf||'')!==nf)return;
+  if(vivos.has(o.ch))return;
+  o.st='feito';o.fts=Date.now();o.fnota=o.fnota||'resolvido na loja';n++;libEnvia(o).catch(()=>{})});
+ if(n)libSalva()}
+function libNaFila(x,t){const ch=libCh({loja:(pedVinc()&&pedVinc().loja)||LOJA||'',nf:String((raw[0]||{}).nf||''),cod:x.cod||'',ean:x.ean||'',desc:x.nome||'',mot:t});
+ const o=LIB.find(y=>y.ch===ch);return (o&&o.st!=='feito')?o:null}
+function libFeito(id,nota){const o=LIB.find(y=>y.id===id);if(!o)return;
+ o.st='feito';o.fts=Date.now();if(nota)o.fnota=nota;libSalva();libEnvia(o).catch(()=>{})}
+function libReabre(id){const o=LIB.find(y=>y.id===id);if(!o)return;
+ o.st='aberto';o.fts=0;o.fnota='';o.ts=Date.now();libSalva();libEnvia(o).catch(()=>{})}
+function libTira(id){const i=LIB.findIndex(y=>y.id===id);if(i<0)return;LIB.splice(i,1);libSalva()}
+async function libEnvia(o){
+ if(!logado())return;
+ await sb('/rest/v1/liberacoes?on_conflict=chave',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},
+  body:[{loja:o.loja||null,nf:o.nf||null,fornecedor:o.forn||null,cnpj:o.cnpj||null,cod_interno:o.cod||null,ean:o.ean||null,
+   descricao:o.desc||'',motivo:o.mot||null,detalhe:o.det||null,status:o.st||'aberto',
+   criado_em:iso(o.ts),feito_em:o.fts?iso(o.fts):null,feito_nota:o.fnota||null,chave:o.ch}]})}
+function libDeLinha(r){
+ return {id:r.id||libId(),ts:Date.parse(r.criado_em)||Date.now(),loja:r.loja||'',nf:r.nf||'',forn:r.fornecedor||'',cnpj:r.cnpj||'',
+  cod:r.cod_interno||'',ean:r.ean||'',desc:r.descricao||'',mot:r.motivo||'',det:r.detalhe||'',
+  st:r.status||'aberto',fts:Date.parse(r.feito_em)||0,fnota:r.feito_nota||'',
+  ch:r.chave||libCh({loja:r.loja,nf:r.nf,cod:r.cod_interno,ean:r.ean,desc:r.descricao,mot:r.motivo})}}
+async function libSync(silencioso,aviso){
+ const msg=(t,e)=>{if(silencioso)return;if(aviso)aviso(t,e);else nuvem(t,e)};
+ if(!logado()){msg('Entre na nuvem (Mais &rsaquo; Ajustes) para compartilhar a fila entre os aparelhos.',1);return}
+ try{
+  msg('Sincronizando a fila…');
+  const L=await (await sb('/rest/v1/liberacoes?select=*&order=criado_em.desc&limit=300')).json();
+  let novas=0;const vistos=new Set();
+  L.forEach(r=>{const rem=libDeLinha(r);vistos.add(rem.ch);
+   const i=LIB.findIndex(y=>y.ch===rem.ch);
+   if(i<0){LIB.push(rem);novas++;return}
+   const loc=LIB[i];
+   if(rem.st==='feito'&&loc.st!=='feito'){LIB[i]=rem;novas++}
+   else if(loc.st==='feito'&&rem.st!=='feito'){libEnvia(loc).catch(()=>{})}
+   else if((rem.fts||rem.ts)>(loc.fts||loc.ts)){LIB[i]=Object.assign({},loc,rem);novas++}});
+  let subiu=0;
+  for(const o of LIB.slice()){if(!vistos.has(o.ch)){try{await libEnvia(o);subiu++}catch(e){}}}
+  LIBTS=Date.now();libSalva();libDraw();
+  msg('✓ Fila sincronizada: '+libAberta().length+' na fila'+(novas?' · '+novas+' de outros aparelhos':'')+(subiu?' · '+subiu+' enviadas':'')+'.')}
+ catch(e){msg('Não foi possível sincronizar a fila ('+esc(e.message)+').',1)}}
+function libTexto(L,tit){
+ const z=v=>String(v).padStart(2,'0'),d=new Date();
+ let t='*Kostta Loja · '+(tit||'Liberar para venda')+'*\n'+z(d.getDate())+'/'+z(d.getMonth()+1)+' '+z(d.getHours())+':'+z(d.getMinutes())+'\n';
+ const gr={};L.forEach(o=>{const k=(o.loja||'sem loja')+' · NF '+(o.nf||'—')+(o.forn?' · '+o.forn:'');(gr[k]=gr[k]||[]).push(o)});
+ Object.keys(gr).forEach(k=>{
+  t+='\n*'+k+'*\n'+gr[k].map(o=>'• '+(o.cod?o.cod+' · ':'')+o.desc+(o.ean?'\n  EAN '+o.ean:'')
+   +'\n  '+(PEND[o.mot]?PEND[o.mot][1]:'Verificar')+': '+(o.det||'')
+   +'\n  parado há '+espera(Date.now()-o.ts)).join('\n')+'\n'});
+ return t+'\nTotal: '+L.length+(L.length===1?' produto parado':' produtos parados')}
+function libLinha(o){
+ const ms=Date.now()-o.ts,vl=ms>4*3600e3,b=PEND[o.mot]?PEND[o.mot][1]:'Verificar';
+ if(o.st==='feito')return '<div class="lbr ft"><span class="ln">'+esc(o.desc)+'</span><span class="lt">✓ em '+espera(Math.max(0,(o.fts||0)-o.ts))+'</span>'
+  +'<span class="lm">'+(o.loja?'<b>'+esc(o.loja)+'</b> · ':'')+'NF '+esc(o.nf||'—')+' · '+esc(b)+(o.fnota?' · '+esc(o.fnota):'')+'</span>'
+  +'<span class="la"><button class="btn" data-lrea="'+esc(o.id)+'">Reabrir</button></span></div>';
+ return '<div class="lbr'+(vl?' vl':'')+'"><span class="ln">'+esc(o.desc)+'</span>'
+  +'<span class="lt">'+espera(ms)+'<button class="lx" data-lrem="'+esc(o.id)+'" title="Tirar da fila">✕</button></span>'
+  +'<span class="lm">'+(o.loja?'<b>'+esc(o.loja)+'</b> · ':'')+'NF '+esc(o.nf||'—')
+  +(o.cod?' · cód. '+esc(o.cod):'')+(o.ean?' · <span class="ean">'+esc(o.ean)+'</span>':'')+'</span>'
+  +(o.forn?'<span class="lf">'+esc(o.forn)+'</span>':'')
+  +'<span class="ld"><b>'+esc(b)+'</b>'+(o.det?' — '+esc(o.det):'')+'</span>'
+  +'<span class="la"><button class="btn pri" data-lfei="'+esc(o.id)+'">Marcar feito</button>'
+  +'<button class="btn" data-lum="'+esc(o.id)+'">Mandar</button></span></div>'}
+function libDraw(){
+ const el=$('#libw');if(!el)return;
+ libBadge();
+ const A=libAberta().slice().sort((a,b)=>a.ts-b.ts);
+ const d0=new Date();d0.setHours(0,0,0,0);
+ const F=LIB.filter(o=>o.st==='feito'&&(o.fts||0)>=d0.getTime()).sort((a,b)=>b.fts-a.fts);
+ const lojas=[...new Set(LIB.map(o=>o.loja).filter(Boolean))].sort();
+ if(LFIL!=='todas'&&lojas.indexOf(LFIL)<0)LFIL='todas';
+ const L=LFIL==='todas'?A:A.filter(o=>o.loja===LFIL);
+ const velho=A.length?Date.now()-A[0].ts:0;
+ const med=F.length?F.reduce((s,o)=>s+Math.max(0,(o.fts||0)-o.ts),0)/F.length:0;
+ let h='<div class="row" style="margin:0"><b class="rt">Liberar para venda</b>'
+  +'<span class="rbt"><button class="chip" data-lsync="1">Sincronizar</button></span></div>';
+ h+='<div class="meta">Produtos que esperam um ajuste da retaguarda para poder ir à gôndola.</div>';
+ h+='<div class="lhd">'
+  +'<div><small>Na fila</small><b class="'+(A.length?'w':'')+'">'+A.length+'</b></div>'
+  +'<div><small>Mais antigo</small><b class="'+(velho>4*3600e3?'w':'')+'">'+(A.length?espera(velho):'—')+'</b></div>'
+  +'<div><small>Resolvidos hoje</small><b class="g">'+F.length+(med?' <span style="font-size:11px;color:var(--mut);font-weight:600">em '+espera(med)+'</span>':'')+'</b></div>'
+  +'</div>';
+ if(lojas.length>1)h+='<div class="cfc"><button class="cfk'+(LFIL==='todas'?' on':'')+'" data-lfil="todas">Todas as lojas <b>'+A.length+'</b></button>'
+  +lojas.map(x=>'<button class="cfk'+(LFIL===x?' on':'')+'" data-lfil="'+esc(x)+'">'+esc(x)+' <b>'+A.filter(o=>o.loja===x).length+'</b></button>').join('')+'</div>';
+ if(!LIB.length)h+='<p class="hint">A fila está vazia. Em <b>Conferir</b>, abra um item com pendência e toque em <b>Mandar para Liberar</b>.</p>';
+ else if(!L.length)h+='<p class="hint r-ok">Nada esperando'+(LFIL==='todas'?'':' nesta loja')+'. Tudo que foi conferido já pode vender.</p>';
+ else h+=L.map(libLinha).join('');
+ if(L.length)h+='<div class="btns"><button class="btn pri" data-ltod="1">Mandar '+(L.length===1?'no WhatsApp':'os '+L.length+' no WhatsApp')+'</button></div>';
+ if(F.length){h+='<div class="btns" style="margin-top:12px"><button class="btn" data-lfeit="1">'+(LFEI?'Ocultar':'Ver')+(F.length===1?' o resolvido de hoje':' os '+F.length+' resolvidos hoje')+'</button></div>';
+  if(LFEI)h+='<div style="margin-top:8px">'+F.map(libLinha).join('')+'</div>'}
+ h+='<p id="libm" class="hint"></p>';
+ el.innerHTML=h}
+$('#v-lib').onclick=e=>{
+ const b=e.target.closest?e.target.closest('[data-lfei],[data-lrea],[data-lrem],[data-lum],[data-ltod],[data-lfil],[data-lsync],[data-lfeit]'):null;
+ if(!b)return;const t=b.dataset;
+ if(t.lfil!=null){LFIL=t.lfil;libDraw();return}
+ if(t.lfeit!=null){LFEI=!LFEI;libDraw();return}
+ if(t.lsync!=null){libSync(false,(x,er)=>{const m=$('#libm');if(m){m.className=er?'hint err':'hint';m.innerHTML=x}});return}
+ if(t.lfei!=null){libFeito(t.lfei);libDraw();return}
+ if(t.lrea!=null){libReabre(t.lrea);libDraw();return}
+ if(t.lrem!=null){const o=LIB.find(y=>y.id===t.lrem);
+  if(o&&!confirm('Tirar "'+o.desc+'" da fila? Isso não marca como resolvido.'))return;
+  libTira(t.lrem);libDraw();return}
+ if(t.lum!=null){const o=LIB.find(y=>y.id===t.lum);if(o)shTexto(libTexto([o]),'#libm');return}
+ if(t.ltod!=null){const A=libAberta().slice().sort((a,b2)=>a.ts-b2.ts);
+  shTexto(libTexto(LFIL==='todas'?A:A.filter(o=>o.loja===LFIL)),'#libm');return}};
 /* ===== Conferir: lista unica, filtros e folha de detalhe ===== */
 const PEND={
- nenhum:[0,'Nota × pedido','c-bad','pedido'],
- cad:[1,'Cadastrar','c-bad','cad'],
- extra:[2,'Verifique o EAN','c-warn','pedido'],
- falta:[3,'Não entregue','c-bad','pedido'],
- emb:[4,'Informar embalagem','c-warn','cad'],
- custo:[5,'Custo acima','c-bad','preco'],
- qtd:[6,'Quantidade','c-warn','pedido'],
- troca:[7,'Substituição','c-warn','pedido'],
- aj:[8,'Ajustar preço','c-bad','preco'],
- at:[9,'Margem acima','c-warn','preco'],
- erp:[10,'Ajuste no ERP','c-warn','cad'],
- dupl:[11,'Repetido no pedido','c-warn','pedido'],
- novo:[12,'Item a mais','c-ok','pedido']};
+ nenhum:[0,'Nota × pedido','c-bad','pedido',0],
+ cad:[1,'Cadastrar','c-bad','cad',1],
+ extra:[2,'Verifique o EAN','c-warn','pedido',0],
+ falta:[3,'Não entregue','c-bad','pedido',0],
+ emb:[4,'Informar embalagem','c-warn','cad',0],
+ custo:[5,'Custo acima','c-bad','preco',0],
+ qtd:[6,'Quantidade','c-warn','pedido',0],
+ troca:[7,'Substituição','c-warn','pedido',0],
+ aj:[8,'Ajustar preço','c-bad','preco',1],
+ at:[9,'Margem acima','c-warn','preco',1],
+ erp:[10,'Ajuste no ERP','c-warn','cad',1],
+ dupl:[11,'Repetido no pedido','c-warn','pedido',0],
+ novo:[12,'Item a mais','c-ok','pedido',0]};
+const SEMFILA={nenhum:1,dupl:1,novo:1};
 const CFF=[['pend','Pendências'],['cad','Cadastro'],['preco','Preço'],['pedido','Nota × pedido'],['ok','Conferidos'],['tudo','Tudo']];
 const cfilD=()=>LS.get('cfild','pend');
 function itensConf(pv){
@@ -1050,6 +1227,10 @@ function sheetDraw(){
      return '<button class="pbr'+(k===par?' on':'')+'" data-ocp="'+esc(o.k)+'#'+esc(k)+'"><span class="pbn">'+esc(q.desc)+(k===par?' <span class="badge c-warn">provável</span>':'')+'</span><span class="pbm2">'+(q.cod?'cód. '+esc(q.cod)+' · ':'')+nfmt(q.un)+' un'+(q.ean?'<br><span class="ean">'+esc(soNum(q.ean))+'</span>':'')+'</span><span class="pbp">→</span></button>'}).join('')+'</div>'}
   if(o.t==='novo'&&o.k)h+='<div class="btns"><button class="btn" data-ocd="'+esc(o.k)+'">Desfazer</button></div>';
   if((o.t==='aj'||o.t==='at')&&a)h+='<label class="chk"><input type="checkbox" data-a="'+esc(a.key)+'"'+(adj.has(a.key)?' checked':'')+'> Preço já ajustado no ERP</label>';
+  if(!SEMFILA[o.t]){const naf=libNaFila(x,o.t);
+   h+=naf?'<p class="hint r-ok" style="margin:8px 0 0">✔ Na fila da retaguarda há '+espera(Date.now()-naf.ts)+'</p>'
+     +'<div class="btns"><button class="btn pri" data-lbok="'+esc(naf.id)+'">Marcar feito</button><button class="btn" data-lbx="'+esc(naf.id)+'">Tirar da fila</button></div>'
+    :'<div class="btns"><button class="btn'+(PEND[o.t][4]?' pri':'')+'" data-lbm="'+esc(x.key)+'#'+o.t+'">Mandar para Liberar</button></div>'}
   h+='</div>'});
  if(a){
   h+='<div class="shsec">NÚMEROS</div><div class="shnum">'
@@ -1081,6 +1262,7 @@ function draw(){
  const pv=demo?null:(PED.find(x=>x.nf&&n0.nf&&String(x.nf)===String(n0.nf))||null),ipv=pv?PED.indexOf(pv):-1;
  const O=pv?ocorrencias(pv):[];
  const L=itensConf(pv),CT=cfConta(L);
+ try{libConfere(L)}catch(e){}
  if(CGRP){CFIL={fat:'pedido',cad:'cad',mar:'preco',ok:'ok'}[CGRP]||'';CGRP=''}
  let fl=CFIL||cfilD();
  if(!CFIL&&!CT[fl])fl=CT.pend?'pend':'tudo';
@@ -1100,8 +1282,10 @@ function draw(){
  h+=LF.length?'<div class="cfl">'+LF.map(cfLinha).join('')+'</div>'
   :'<p class="hint">Nada neste filtro.</p>';
  if(LF.length&&fl!=='ok')h+='<p class="hint" style="margin:8px 0 0">Toque em um item para ver o que fazer.</p>';
- {const pri=CT.pend?['shp','Mandar as '+CT.pend+' pendências']
-   :(pv&&pv.status!=='recebido'?['prec2','Marcar como recebido']:['tn','Conferir outra nota']);
+ {const trava=L.filter(x=>x.Q.some(o=>PEND[o.t][4]&&!libNaFila(x,o.t)));
+  const pri=trava.length?['lbtd','Mandar '+trava.length+' para Liberar']
+   :(CT.pend?['shp','Mandar as '+CT.pend+' pendências']
+   :(pv&&pv.status!=='recebido'?['prec2','Marcar como recebido']:['tn','Conferir outra nota']));
   h+='<div class="cfbar"><button class="btn pri" data-'+pri[0]+'="'+(pri[0]==='prec2'?ipv:'1')+'">'+pri[1]+'</button>'
    +'<button class="btn dots" data-cmais="1" aria-label="Mais ações">···</button></div>'}
  h+='<p id="cfm" class="hint"></p>';
@@ -1143,6 +1327,18 @@ $('#res').onclick=e=>{const f=e.target.dataset.f,u=e.target.dataset.u,l=e.target
  const bt=e.target.closest?e.target.closest('[data-pnf],[data-prec2],[data-pdiv],[data-g],[data-xpn],[data-tn],[data-shw],[data-pdes],[data-pped],[data-ocv],[data-oca],[data-ocd],[data-ocz],[data-ocp],[data-aj],[data-ci],[data-cf],[data-cmais],[data-shx],[data-shi],[data-shp],[data-shl],[data-vinc]'):null,t=(bt&&bt.dataset)||e.target.dataset;
  if(cl){confEnvia();return}
  if(t.cf!=null){CFIL=t.cf;draw();return}
+ if(t.lbm!=null){const i=String(t.lbm).lastIndexOf('#'),kx=String(t.lbm).slice(0,i),mt=String(t.lbm).slice(i+1);
+  const x=itensConf(pedVinc()).find(y=>y.key===kx),q=x&&x.Q.find(o=>o.t===mt);
+  if(x&&q){const o=libDeConf(x,q);draw();shTexto(libTexto([o]),CSEL?'#shim':'#cfm')}
+  return}
+ if(t.lbok!=null){libFeito(t.lbok);draw();return}
+ if(t.lbx!=null){libTira(t.lbx);draw();return}
+ if(t.lbtd!=null){const LL=itensConf(pedVinc()),fs=[];
+  LL.forEach(x=>x.Q.forEach(o=>{if(PEND[o.t][4]&&!libNaFila(x,o.t))fs.push(libDeConf(x,o))}));
+  draw();
+  if(fs.length)shTexto(libTexto(fs),'#cfm');
+  const m=$('#cfm');if(m&&!fs.length){m.className='hint';m.textContent='Nada novo para a fila.'}
+  return}
  if(t.ci!=null){CSEL=t.ci;CMAIS=false;CEXT='';sheetDraw();return}
  if(t.cmais!=null){CMAIS=true;CSEL='';CDIV=false;sheetDraw();return}
  if(t.shx!=null){sheetFecha();return}
@@ -1570,7 +1766,7 @@ function nuvemDraw(){
  const el=id=>$('#'+id);
  if(logado()){
   el('napar').onchange=e=>{APAR=e.target.value.trim().slice(0,40);LS.set('aparelho',APAR);nuvemDraw();nuvem('Nome do aparelho salvo.')};
-  el('nsinc').onclick=()=>{sincroniza();pdSinc(true);pdBaixa();entBaixa(true).then(()=>{try{histDraw()}catch(e){}})};el('nemb').onclick=()=>embSync();el('nbaixa').onclick=()=>gradeBaixa(true);
+  el('nsinc').onclick=()=>{sincroniza();pdSinc(true);pdBaixa();libSync(true);entBaixa(true).then(()=>{try{histDraw()}catch(e){}})};el('nemb').onclick=()=>embSync();el('nbaixa').onclick=()=>gradeBaixa(true);
   const pb=el('npub');if(pb)pb.onclick=gradePublica;
   el('nsair').onclick=()=>{sbLogout();nuvemDraw();nuvem('Sessão encerrada neste aparelho.')}}
  else{
@@ -1578,7 +1774,7 @@ function nuvemDraw(){
    const em=el('nmail').value.trim(),se=el('nsenha').value;
    if(!em||!se){nuvem('Informe e-mail e senha.',1);return}
    nuvem('Entrando…');
-   try{await sbLogin(em,se);nuvemDraw();nuvem('✓ Conectado como '+esc(SESS.email));gradeBaixa(false);sincroniza(true);embSync(true);pdSinc(true);setTimeout(()=>{pdBaixa(true);entBaixa(true)},1200)}
+   try{await sbLogin(em,se);nuvemDraw();nuvem('✓ Conectado como '+esc(SESS.email));gradeBaixa(false);sincroniza(true);embSync(true);pdSinc(true);setTimeout(()=>{pdBaixa(true);entBaixa(true);libSync(true)},1200)}
    catch(e){nuvem(esc(e.message),1)}};
   el('nsenha').onkeydown=e=>{if(e.key==='Enter')el('nentra').onclick()}}}
 let PD=LS.get('pedido',{forn:'',itens:[]}), PED=LS.get('pedidos',[]), PEDAS=LS.get('pedas',{}), PBQ={};
@@ -2212,8 +2408,20 @@ function przDraw(){
  el.innerHTML=PRZ.length?'<div class="btns" style="margin-top:8px">'+PRZ.map((x,i)=>'<span class="chip">'+esc(x)+' <button class="vx" data-przx="'+i+'">✕</button></span>').join('')+'</div>':'<p class="hint">Nenhum prazo cadastrado.</p>';
  const sel=$('#pprz');
  if(sel){const v=PD.prazo||'';sel.innerHTML='<option value="">Sem prazo definido</option>'+PRZ.map(x=>'<option'+(x===v?' selected':'')+'>'+esc(x)+'</option>')+(v&&PRZ.indexOf(v)<0?'<option selected>'+esc(v)+'</option>':'')}}
-function aba(n){['ped','conf','vend','grade','aj'].forEach(k=>{$('#v-'+k).classList.toggle('on',k===n);$('#t-'+k).classList.toggle('on',k===n)});$('#sub').textContent={conf:'Recebe',vend:'Modo Blecaute',ped:'Pedidos',grade:'Grade do ERP',aj:'Ajustes'}[n]||'';try{window.scrollTo(0,0)}catch(e){}}
+const VIEWS=['ped','conf','vend','grade','aj','lib','mais'],TABS=['ped','conf','lib','mais'],DENTRO={vend:'mais',grade:'mais',aj:'mais'};
+function aba(n){
+ if(VIEWS.indexOf(n)<0)n='conf';
+ VIEWS.forEach(k=>{const v=$('#v-'+k);if(v)v.classList.toggle('on',k===n)});
+ const marca=DENTRO[n]||n;
+ TABS.forEach(k=>{const t=$('#t-'+k);if(t)t.classList.toggle('on',k===marca)});
+ $('#sub').textContent={conf:'Recebe',vend:'Modo Blecaute',ped:'Pedidos',grade:'Grade do ERP',aj:'Ajustes',lib:'Liberar para venda',mais:'Mais'}[n]||'';
+ if(n==='lib')libDraw();
+ try{window.scrollTo(0,0)}catch(e){}}
 document.querySelectorAll('.tabs button').forEach(bt=>{bt.onclick=()=>aba(bt.dataset.tab)});
+$('#v-mais').onclick=e=>{const b=e.target.closest?e.target.closest('[data-mais]'):null;if(!b)return;
+ const k=b.dataset.mais;
+ if(k==='hist'){aba('ped');const h=$('#bhc');if(h){h.click();try{h.scrollIntoView({block:'center'})}catch(e2){}}return}
+ aba(k)};
 $('#gchip').onclick=()=>aba('grade');
 $('#ver').textContent=VER;
 try{const dd=document.lastModified;if(dd)$('#verd').textContent=dd.slice(0,10)}catch(e){}
@@ -2461,9 +2669,10 @@ function tstDraw(){
   PED=[];LS.set('pedidos',PED);PDET='';
   NFS=[];nfsSalva();NFX={};nfxSalva();
   ENT=[];ENTTS=0;entSalva();
+  LIB=[];LIBTS=0;libSalva();
   limpar();XNF='';XVINC='';XABA='ped';LS.set('xaba',XABA);
-  try{pddraw()}catch(e){}try{xetapa()}catch(e){}try{histDraw()}catch(e){}
-  tstDraw();const m=$('#tstm');if(m)m.textContent='✓ Aparelho zerado: pedidos, notas e histórico apagados.'}},0);
+  try{pddraw()}catch(e){}try{xetapa()}catch(e){}try{histDraw()}catch(e){}try{libDraw()}catch(e){}
+  tstDraw();const m=$('#tstm');if(m)m.textContent='✓ Aparelho zerado: pedidos, notas, histórico e fila apagados.'}},0);
  $('#btst1').onclick=()=>{
   if(!np){$('#tstm').textContent='Nenhum pedido pendente de envio.';return}
   if(!confirm('Apagar '+np+' pedido(s) que ainda não foram enviados para a nuvem?'))return;
@@ -2535,7 +2744,8 @@ $('#bxml').onclick=buscaXml;$('#bck').onclick=copiaChave;
 if(!PD.itens||!PD.itens.length){PD.itens=[];PD.edit=null;PD.ok=false}else if(PD.edit&&!PD.itens.some(x=>x.id===PD.edit))PD.edit=null;
 params();draw();vdraw();pddraw();pdModo(PMODO,true);xetapa();ajustaFixa();
 window.addEventListener('resize',ajustaFixa);try{if(window.visualViewport)window.visualViewport.addEventListener('resize',ajustaFixa)}catch(e){}$('#pforn').value=PD.forn||'';if(!PD.loja&&LOJA)PD.loja=LOJA;przDraw();lojaDraw();nuvemDraw();aba(G?'ped':(logado()?'grade':'aj'));
-if(logado())setTimeout(()=>{gradeBaixa(false);sincroniza(true);embSync(true);pdSinc(true);setTimeout(()=>{pdBaixa(true);entBaixa(true)},1200)},800);
+if(logado())setTimeout(()=>{gradeBaixa(false);sincroniza(true);embSync(true);pdSinc(true);setTimeout(()=>{pdBaixa(true);entBaixa(true);libSync(true)},1200)},800);
+try{libBadge()}catch(e){}
 </script>
 </body>
 </html>
