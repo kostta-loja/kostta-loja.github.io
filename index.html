@@ -117,6 +117,50 @@ a.btn{color:var(--tx)}
 .gb.zero{opacity:.6}
 .gb.on{border-color:var(--pri);box-shadow:0 0 0 3px var(--glow)}
 .gcont{border-top:1px solid var(--bd);margin-top:10px;padding-top:8px}
+.mt1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Conferir · lista unica */
+.cfc{display:flex;gap:6px;overflow-x:auto;margin:10px -2px 8px;padding:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cfc::-webkit-scrollbar{display:none}
+.cfk{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1.5px solid var(--bd);border-radius:99px;background:var(--bg);color:var(--mut);font:inherit;font-size:13px;font-weight:650;cursor:pointer;white-space:nowrap}
+.cfk b{font-weight:800;color:var(--tx)}
+.cfk.on{border-color:var(--pri);background:var(--pri);color:var(--prit)}
+.cfk.on b{color:var(--prit)}
+.cfk.zz{opacity:.5}
+.cfl{display:flex;flex-direction:column;gap:6px;margin:2px 0 0}
+.cfr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 8px;align-items:start;width:100%;text-align:left;font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--bd);border-radius:12px;padding:10px 11px;cursor:pointer}
+.cfr:active{background:var(--soft)}
+.cfr.g-bad{border-left-color:var(--bad)}.cfr.g-warn{border-left-color:var(--warn)}.cfr.g-ok{border-left-color:var(--ok)}.cfr.g-n{border-left-color:var(--bd)}
+.cfn{grid-column:1;font-size:14.5px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}
+.cfr .cfb{grid-column:2;grid-row:1;flex:0 0 auto}
+.cfm{grid-column:1/3;font-size:11.5px;color:var(--mut);line-height:1.45;overflow-wrap:anywhere}
+.cfm .ean{font-size:11px}
+.cfx{grid-column:1/3;font-size:11.5px;color:var(--mut)}
+.cfx i{font-style:normal;color:var(--tx);font-weight:700}
+.cfbar{position:sticky;bottom:calc(58px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;margin:12px -13px -13px;padding:10px 13px;background:var(--card);background:color-mix(in srgb,var(--card) 95%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--bd);border-radius:0 0 15px 15px;z-index:5}
+.cfbar .btn{margin:0}
+.cfbar .btn.pri{flex:1}
+.cfbar .btn.dots{flex:0 0 52px;font-size:19px;line-height:1;letter-spacing:2px}
+.shbg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:60;animation:fin .16s ease}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;background:var(--card);border-radius:20px 20px 0 0;max-height:90vh;overflow-y:auto;overscroll-behavior:contain;padding:8px 16px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -10px 34px rgba(0,0,0,.28);animation:sup .2s cubic-bezier(.2,.8,.2,1)}
+@keyframes fin{from{opacity:0}}@keyframes sup{from{transform:translateY(24px);opacity:.4}}
+.shh{position:sticky;top:0;background:var(--card);padding:6px 0 10px;margin:0 0 4px;z-index:2}
+.shg{width:38px;height:4px;border-radius:99px;background:var(--bd);margin:0 auto 10px}
+.shh .r{display:flex;gap:10px;align-items:flex-start}
+.shh h3{flex:1;font-size:17px;font-weight:750;line-height:1.3;margin:0;overflow-wrap:anywhere}
+.shx{flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:16px;line-height:1;cursor:pointer}
+.shid{font-size:12px;color:var(--mut);margin-top:5px;line-height:1.5}
+.pb{border:1px solid var(--bd);border-left:4px solid var(--bd);border-radius:12px;padding:10px 12px;margin:8px 0}
+.pb.c-bad{border-left-color:var(--bad);background:var(--badb)}
+.pb.c-warn{border-left-color:var(--warn);background:var(--warnb)}
+.pb.c-ok{border-left-color:var(--ok);background:var(--okb)}
+.pb .pt{font-size:13.5px;font-weight:750;display:block}
+.pb .pd{font-size:12.5px;color:var(--tx);opacity:.85;margin-top:3px;line-height:1.5;display:block}
+.pb .btns{margin:8px 0 0}
+.shnum{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}
+.shnum>div{background:var(--bg);border-radius:10px;padding:8px 10px}
+.shnum small{display:block;font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.shnum b{font-size:15px;font-weight:750}
+.shsec{font-size:11px;font-weight:800;color:var(--mut);letter-spacing:.09em;margin:14px 0 4px}
 .seg2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px}
 .seg2b{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 12px;border:1.5px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--mut);font:inherit;font-size:14.5px;font-weight:700;cursor:pointer}
 .seg2b small{min-width:22px;height:22px;border-radius:11px;background:var(--bd);color:var(--tx);font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
@@ -304,6 +348,8 @@ summary{font-weight:700;font-size:13.5px;cursor:pointer}
 </section>
 <section id="res"></section>
 </div>
+<div id="shbg" class="shbg" hidden></div>
+<div id="sheet" class="sheet" hidden></div>
 <div class="view" id="v-vend">
 <section class="box">
   <b class="t">Modo Blecaute · venda sem energia</b>
@@ -458,7 +504,7 @@ function ajustaFixa(){try{const t=document.querySelector('.top'),l=document.getE
 const MOVEL=!!(/Android|iPhone|iPad|iPod|Mobile|Silk/i.test(navigator.userAgent||'')||((window.matchMedia&&matchMedia('(pointer:coarse)').matches)&&innerWidth<820));
 document.documentElement.classList.toggle('movel',MOVEL);
 const HOSP=/^https?:/.test(location.protocol);document.documentElement.classList.toggle('hosp',HOSP);
-const VER='2026.11.19f';
+const VER='2026.11.25a';
 let DG=['v'+VER,'JavaScript ativo'];
 {let ls='ok';try{localStorage.setItem('_k','1');localStorage.removeItem('_k')}catch(e){ls='bloqueado'}DG.push('armazenamento '+ls)}
 try{const pk=document.getElementById('pacote');
@@ -636,7 +682,7 @@ async function buscaXml(){
    draw();ckStatus();return}
   catch(e){if(e&&e.name==='AbortError')return}}
  $('#fx').click()}
-function limpar(){raw=[];CHAVE='';CGRP='';CSH=false;XVOLTA=false;XPASSO='';$('#ck').value='';if(demo){demo=false;buildIdx(G?G.rows:[])}$('#msg').textContent='';draw();ckStatus()}
+function limpar(){raw=[];CHAVE='';CGRP='';CSH=false;CFIL='';CSEL='';CMAIS=false;XVOLTA=false;XPASSO='';$('#ck').value='';if(demo){demo=false;buildIdx(G?G.rows:[])}$('#msg').textContent='';draw();ckStatus()}
 function pesoInput(s){s=String(s||'').trim().toLowerCase().replace(/\s+/g,'');if(!s)return null;
  const m=s.match(/^(\d+(?:[.,]\d+)?)(kg|g)?$/);if(!m)return NaN;
  const v=parseFloat(m[1].replace(',','.'));
@@ -671,7 +717,7 @@ function buscaNome(q,lim){
   out.push([p,r])}
  out.sort((a,b)=>b[0]-a[0]);
  return out.slice(0,lim||6).map(x=>x[1])}
-let PSEL2=LS.get('pedsel',''),CDIV=false,CGRP='',CSH=false,XVOLTA=false,CEXT='',XPASSO='',XABA=LS.get('xaba','ped'),NFS=LS.get('nfs',[]),XNF='',XVINC='';
+let PSEL2=LS.get('pedsel',''),CDIV=false,CGRP='',CSH=false,XVOLTA=false,CEXT='',XPASSO='',CFIL='',CSEL='',CMAIS=false,XABA=LS.get('xaba','ped'),NFS=LS.get('nfs',[]),XNF='',XVINC='';
 function pedidosAbertos(){return PED.map((p,i)=>[p,i]).filter(x=>(x[0].status||'aberto')==='conf'||x[0].status==='nf')}
 function achaPed(v){
  const i=PED.findIndex(x=>String(x.id)===String(v));
@@ -700,12 +746,12 @@ function nfxPoe(nf,txt){
 function nfAberta(nf){return raw.length&&!demo&&String((raw[0]&&raw[0].nf)||'')===String(nf)}
 function nfAbre(nf,grupo){
  nf=String(nf||'');
- if(nfAberta(nf)){CGRP=grupo||'';XVOLTA=false;XPASSO='';draw();try{window.scrollTo(0,0)}catch(e){}return true}
+ if(nfAberta(nf)){CGRP=grupo||'';CFIL='';CSEL='';CMAIS=false;XVOLTA=false;XPASSO='';draw();try{window.scrollTo(0,0)}catch(e){}return true}
  const g=NFX[nf];
  if(!g){xmsg('O XML desta nota não está guardado neste aparelho. Toque em <b>Carregar nota fiscal</b> e escolha o arquivo.',1);return false}
  raw=[];
  if(!addXml(g.t,'nf'+nf+'.xml'))return false;
- CGRP=grupo||'';CSH=false;XVOLTA=false;XPASSO='';XNF='';XVINC='';
+ CGRP=grupo||'';CSH=false;CFIL='';CSEL='';CMAIS=false;XVOLTA=false;XPASSO='';XNF='';XVINC='';
  draw();ckStatus();try{window.scrollTo(0,0)}catch(e){}
  return true}
 function nfGuarda(A){
@@ -855,81 +901,212 @@ function vincLista(){
  if(!L.length)return '<p class="hint">Nenhum pedido aguardando nota fiscal. Dá para conferir a nota assim mesmo: veja <b>Cadastro</b> e <b>Margem</b>.</p>';
  return '<p class="t2">Qual pedido é esta nota?</p>'+L.map(q=>{const p=q[0];
   return '<div class="oc" style="grid-template-columns:minmax(0,1fr) auto"><b>'+esc(p.forn||'sem fornecedor')+'</b><button class="chip" data-pnf="'+q[1]+'">vincular</button><small>'+(p.loja?esc(p.loja)+' · ':'')+hora(p.ts)+' · '+p.itens.length+' itens · '+R(p.total)+'</small></div>'}).join('')}
+/* ===== Conferir: lista unica, filtros e folha de detalhe ===== */
+const PEND={
+ nenhum:[0,'Nota × pedido','c-bad','pedido'],
+ cad:[1,'Cadastrar','c-bad','cad'],
+ extra:[2,'Verifique o EAN','c-warn','pedido'],
+ falta:[3,'Não entregue','c-bad','pedido'],
+ emb:[4,'Informar embalagem','c-warn','cad'],
+ custo:[5,'Custo acima','c-bad','preco'],
+ qtd:[6,'Quantidade','c-warn','pedido'],
+ troca:[7,'Substituição','c-warn','pedido'],
+ aj:[8,'Ajustar preço','c-bad','preco'],
+ at:[9,'Margem acima','c-warn','preco'],
+ erp:[10,'Ajuste no ERP','c-warn','cad'],
+ dupl:[11,'Repetido no pedido','c-warn','pedido'],
+ novo:[12,'Item a mais','c-ok','pedido']};
+const CFF=[['pend','Pendências'],['cad','Cadastro'],['preco','Preço'],['pedido','Nota × pedido'],['ok','Conferidos'],['tudo','Tudo']];
+const cfilD=()=>LS.get('cfild','pend');
+function itensConf(pv){
+ const A=raw.map(analisa),M=pv?confrontoMapa(pv):null,AJ=ajustesERP(pv),L=[];
+ const ajx={};
+ AJ.forEach(o=>{if(o.t==='cad')return;const k=(o.cod||'')+'|'+soNum(o.ean||'');(ajx[k]=ajx[k]||[]).push(o)});
+ const semCasar=!!(M&&!M.casou&&!Object.keys(M.NT).some(k=>M.NT[k].troca));
+ const pendEan=!!(M&&Object.keys(M.NT).some(k=>!M.PD2[k]&&!M.NT[k].aceito&&!M.NT[k].troca));
+ A.forEach(a=>{
+  const Q=[],done=adj.has(a.key)&&(a.s==='aj'||a.s==='at');
+  if(a.s==='cad')Q.push({t:'cad',d:'este produto não está na Grade do ERP. Associe a um produto existente ou cadastre antes de lançar a entrada.'});
+  else if(a.s==='emb')Q.push({t:'emb',d:'informe quantas unidades vêm na embalagem; sem isso o app não calcula o custo unitário.'});
+  else if(a.s==='aj'&&!done)Q.push({t:'aj',d:'lucro de '+pc(a.lv)+', abaixo da faixa. Preço sugerido '+R(a.sug)+' (hoje '+R(a.venda)+').'});
+  else if(a.s==='at'&&!done)Q.push({t:'at',d:'lucro de '+pc(a.lv)+', acima da faixa. Confira se o preço de venda está certo.'});
+  if(M&&!semCasar){
+   const k=M.KI[a.key],n=k?M.NT[k]:null,q=k?M.PD2[k]:null,st=k?statusItemNota(M,k):null;
+   if(st==='extra'&&n&&n.aceito)Q.push({t:'novo',k:k,d:'você aceitou como item a mais do pedido.'});
+   else if(st==='extra')Q.push({t:'extra',k:k,d:'este item da nota não bate com nenhum item do pedido. Pode ser o mesmo produto com outro código de barras.'});
+   else if(st==='troca'&&n&&n.troca&&M.PD2[n.troca]){const fz=M.PD2[n.troca];
+    Q.push({t:'troca',k:k,d:'parece ter vindo no lugar de '+(fz.cod?fz.cod+' · ':'')+fz.desc+'. Pedido '+nfmt(fz.un)+' un · nota '+nfmt(n.un)+' un.'})}
+   else if(st==='custo'&&n&&q){const cN=n.un>0?n.v/n.un:0,cP=q.un>0?q.v/q.un:0,dc=(cP>0&&cN>0)?cN/cP-1:0;
+    Q.push({t:'custo',d:'pedido '+R(cP)+' · nota '+R(cN)+' · +'+(dc*100).toFixed(1).replace('.',',')+'% acima do combinado.'})}
+   else if(st==='qtd'&&n&&q)Q.push({t:'qtd',d:'pedido '+nfmt(q.un)+' un · nota '+nfmt(n.un)+' un.'});
+   if(q&&q.n>1)Q.push({t:'dupl',d:'este produto aparece '+q.n+' vezes no pedido; o app somou as linhas para comparar.'});
+  }
+  (ajx[(a.cod||'')+'|'+soNum(a.ek||'')]||[]).forEach(o=>Q.push({t:'erp',d:o.d}));
+  const un=unXml(a);
+  L.push({a:a,key:a.key,nome:a.desc,cod:a.cod||'',ean:soNum(a.ek||''),
+   m:(un?nfmt(un)+' un':'')+(a.custo?' × '+R(a.custo):'')+' · '+R(a.vp),Q:Q})});
+ if(M&&!semCasar)Object.keys(M.PD2).forEach(k=>{const q=M.PD2[k];
+  if(M.NT[k]||q.troca)return;
+  L.push({a:null,key:'f'+k,nome:q.desc,cod:q.cod||'',ean:soNum(q.ean||''),m:nfmt(q.un)+' un pedidas · nada nesta nota',
+   Q:[{t:'falta',k:k,d:'o pedido tem '+nfmt(q.un)+' un deste produto e a nota não traz nenhuma.'+(pendEan?' Confira antes os itens marcados como Verifique o EAN.':'')}]})});
+ if(semCasar)L.unshift({a:null,key:'xnenhum',nome:'Nenhum item do pedido foi encontrado nesta nota',cod:'',ean:'',m:'confira se a nota é deste fornecedor, ou vincule outro pedido',
+  Q:[{t:'nenhum',d:'nenhum item da nota casou com o pedido vinculado. Se a nota estiver certa, desvincule e escolha o pedido correto.'}]});
+ L.forEach(x=>{x.Q.sort((p,q)=>PEND[p.t][0]-PEND[q.t][0]);x.top=x.Q[0]||null;
+  x.gr={};x.Q.forEach(o=>{x.gr[PEND[o.t][3]]=1})});
+ return L}
+function cfConta(L){return {tudo:L.length,pend:L.filter(x=>x.Q.length).length,ok:L.filter(x=>!x.Q.length).length,
+ cad:L.filter(x=>x.gr.cad).length,preco:L.filter(x=>x.gr.preco).length,pedido:L.filter(x=>x.gr.pedido).length}}
+function cfPassa(x,fl){
+ if(fl==='tudo')return true;
+ if(fl==='ok')return !x.Q.length;
+ if(fl==='pend')return !!x.Q.length;
+ return !!x.gr[fl]}
+function cfOrdena(L){return L.slice().sort((a,b)=>{
+ const ga=a.top?PEND[a.top.t][0]:99,gb=b.top?PEND[b.top.t][0]:99;
+ return (ga-gb)||H(a.nome||'').localeCompare(H(b.nome||''))})}
+function cfLinha(x){
+ const b=x.top?PEND[x.top.t]:null,cl=!b?'g-n':(b[2]==='c-bad'?'g-bad':b[2]==='c-warn'?'g-warn':'g-ok');
+ return '<button class="cfr '+cl+'" data-ci="'+esc(x.key)+'">'
+  +'<span class="cfn">'+esc(x.nome)+'</span>'
+  +'<span class="cfb badge '+(b?b[2]:'c-ok')+'">'+(b?b[1]:'Conferido')+'</span>'
+  +'<span class="cfm">'+(x.ean?'<span class="ean">'+esc(x.ean)+'</span> · ':'')+(x.cod?'cód. '+esc(x.cod)+' · ':'')+esc(x.m)+'</span>'
+  +(x.Q.length>1?'<span class="cfx"><i>+'+(x.Q.length-1)+'</i> '+(x.Q.length===2?'outro ponto neste item':'outros pontos neste item')+'</span>':'')
+  +'</button>'}
+function cfTexto(L){
+ const z=v=>String(v).padStart(2,'0'),d=new Date(),n0=raw[0]||{},PE=L.filter(x=>x.Q.length);
+ let t='*Kostta Loja · Recebimento*\n'+(LOJA?LOJA+' · ':'')+'NF '+(n0.nf||'—')+(n0.forn?' · '+n0.forn:'')+'\n'
+  +z(d.getDate())+'/'+z(d.getMonth()+1)+' '+z(d.getHours())+':'+z(d.getMinutes())+'\n';
+ if(!PE.length)return t+'\nNota conferida, sem pendências.';
+ [['cad','CADASTRO'],['preco','PREÇO'],['pedido','NOTA × PEDIDO']].forEach(g=>{
+  const it=PE.filter(x=>x.gr[g[0]]);if(!it.length)return;
+  t+='\n*'+g[1]+'* ('+it.length+')\n'+it.map(x=>{const q=x.Q.filter(o=>PEND[o.t][3]===g[0]);
+   return '• '+(x.cod?x.cod+' · ':'')+x.nome+(x.ean?'\n  EAN '+x.ean:'')
+    +q.map(o=>'\n  '+PEND[o.t][1]+': '+o.d).join('')}).join('\n')+'\n'});
+ return t+'\nTotal: '+PE.length+(PE.length===1?' item a resolver':' itens a resolver')}
+function itemTexto(x){
+ const n0=raw[0]||{};
+ return '*Kostta Loja*\n'+(LOJA?LOJA+' · ':'')+'NF '+(n0.nf||'—')+(n0.forn?' · '+n0.forn:'')+'\n\n'
+  +(x.cod?x.cod+' · ':'')+x.nome+(x.ean?'\nEAN '+x.ean:'')+'\n'+x.m
+  +(x.Q.length?'\n\n'+x.Q.map(o=>'• '+PEND[o.t][1]+': '+o.d).join('\n'):'\n\nSem pendência.')}
+async function shTexto(t,alvo){
+ const mg=alvo?$(alvo):null;
+ try{if(navigator.share){await navigator.share({title:'Kostta Loja',text:t});return}}catch(e){if(e&&e.name==='AbortError')return}
+ try{await navigator.clipboard.writeText(t);if(mg){mg.className='hint';mg.textContent='✓ Texto copiado. Cole na conversa do grupo.'}return}catch(e){}
+ if(mg){mg.className='hint';mg.innerHTML='<textarea class="ta" rows="8" readonly>'+esc(t)+'</textarea>'}}
+function sheetFecha(){CSEL='';CMAIS=false;CEXT='';sheetDraw()}
+function sheetDraw(){
+ const el=$('#sheet'),bg=$('#shbg');
+ if(!el||!bg)return;
+ if((!CSEL&&!CMAIS)||!raw.length){el.hidden=true;bg.hidden=true;el.innerHTML='';document.body.style.overflow='';return}
+ const pv=pedVinc(),L=itensConf(pv),n0=raw[0]||{};
+ let h='';
+ if(CMAIS){
+  const AJ=ajustesERP(pv),PE=L.filter(x=>x.Q.length),ipv=pv?PED.indexOf(pv):-1;
+  h='<div class="shh"><div class="shg"></div><div class="r"><h3>Mais ações</h3><button class="shx" data-shx="1">✕</button></div>'
+   +'<div class="shid">NF '+esc(n0.nf||'—')+(n0.forn?' · '+esc((n0.forn||'').slice(0,34)):'')+'</div></div>';
+  h+='<div class="shsec">O PEDIDO</div><div class="btns">'
+   +(pv?'<button class="btn" data-pped="1">Ver os '+pv.itens.length+' itens do pedido</button><button class="btn" data-pdes="'+ipv+'">Desvincular o pedido</button>'
+       :'<button class="btn pri" data-vinc="1">Vincular a um pedido</button>')+'</div>';
+  if(pv&&CDIV)h+='<div class="plinhas">'+(()=>{const M=confrontoMapa(pv);return pv.itens.slice().sort((a,b)=>H(a.desc).localeCompare(H(b.desc))).map(i=>pedLinha(i,M)).join('')})()+'</div>';
+  if(pv&&pv.cruz&&Object.keys(pv.cruz).length)h+='<p class="hint r-ok">✔ '+Object.keys(pv.cruz).length+' item(ns) da nota ligados ao pedido por você. <button class="chip" data-ocz="1">desfazer todos</button></p>';
+  h+='<div class="shsec">AJUSTES PARA O ERP ('+AJ.length+')</div>';
+  if(AJ.length){h+='<p class="hint">O que corrigir no cadastro para a próxima entrada não errar.</p>'+AJ.map(ajLinha).join('')
+   +'<div class="btns"><button class="btn" data-aj="share">Mandar os ajustes</button></div><p id="ajm" class="hint"></p>'}
+  else h+='<p class="hint r-ok">Nenhum ajuste de cadastro pendente nesta nota.</p>';
+  h+='<div class="shsec">ESTA NOTA</div><div class="btns">'
+   +'<button class="btn" data-shl="1">Compartilhar a lista completa</button>'
+   +(PE.length?'<button class="btn pri" data-shp="1">Mandar as '+PE.length+' pendências</button>':'')
+   +'<button class="btn" data-ex="1">Exportar (CSV)</button><button class="btn" data-cl="1">Enviar para a nuvem</button></div>'
+   +'<p id="exmsg" class="hint"></p><p id="cfm2" class="hint"></p>';
+  h+='<div class="shsec">TROCAR DE NOTA</div><div class="btns">'
+   +'<button class="btn" data-tn="1">Conferir outra nota</button><button class="btn" data-lp="1">Limpar esta nota</button></div>';
+  el.innerHTML=h;el.hidden=false;bg.hidden=false;document.body.style.overflow='hidden';el.scrollTop=0;return}
+ const x=L.find(y=>y.key===CSEL);
+ if(!x){CSEL='';el.hidden=true;bg.hidden=true;document.body.style.overflow='';return}
+ const a=x.a,M=pv?confrontoMapa(pv):null;
+ h='<div class="shh"><div class="shg"></div><div class="r"><h3>'+esc(x.nome)+'</h3><button class="shx" data-shx="1">✕</button></div>'
+  +'<div class="shid">'+(x.cod?'cód. <b>'+esc(x.cod)+'</b>':'<b class="err">sem código no ERP</b>')
+  +(x.ean?' · EAN <span class="ean">'+esc(x.ean)+'</span>':'')
+  +(a?'<br>NF '+esc(a.nf)+' · item '+esc(a.n)+' · '+esc(x.m):'<br>'+esc(x.m))+'</div></div>';
+ if(!x.Q.length)h+='<div class="pb c-ok"><span class="pt">Item conferido</span><span class="pd">quantidade, custo e preço de venda dentro do esperado.</span></div>';
+ x.Q.forEach(o=>{const b=PEND[o.t];
+  h+='<div class="pb '+b[2]+'"><span class="pt">'+b[1]+'</span><span class="pd">'+esc(o.d)+'</span>';
+  if(o.t==='cad'&&a){
+   h+='<div class="emb"><label style="display:block">Associar a um produto da Grade<input data-s="'+esc(a.key)+'" placeholder="código ou nome" style="display:block;width:100%;margin-top:4px"></label></div>';
+   const rs=SR[a.key];
+   if(rs)h+=rs.length?rs.map(y=>'<button class="chip" style="display:block;margin:4px 0;text-align:left" data-l="'+esc(a.ek)+'#'+esc(y[1])+'">'+esc(y[1])+' · '+esc(y[2])+' · '+R(y[3])+'</button>').join(''):'<div class="hint">Nada encontrado na Grade.</div>'}
+  if(o.t==='emb'&&a)h+='<div class="emb">'+(a.kg
+    ?'<label>Peso por unidade (g ou kg) <input data-w="'+esc(a.sk)+'" inputmode="decimal" style="width:130px" placeholder="56 ou 0,056kg" value="'+(a.wk?String(Math.round(a.wk*10000)/10).replace('.',','):'')+'"></label>'
+    :'<label>Unidades por embalagem <input data-e="'+esc(a.sk)+'" inputmode="numeric" style="width:110px" placeholder="informe" value="'+(a.fat||'')+'"></label>')
+   +(a.sf?' <button class="chip" data-u="'+esc(a.sk)+'#'+a.sf+'">Usar '+a.sf+' (custo igual ao do ERP)</button>':'')+'</div>';
+  if((o.t==='extra'||o.t==='troca')&&o.k){
+   const fal=M?Object.keys(M.PD2).filter(k=>!M.NT[k]):[],par=(o.t==='troca'&&M&&M.NT[o.k])?M.NT[o.k].troca:'';
+   h+='<div class="btns">'
+    +(par?'<button class="btn pri" data-ocp="'+esc(o.k)+'#'+esc(par)+'">Confirmar a substituição</button>':'')
+    +(fal.length?'<button class="btn" data-ocv="'+esc(o.k)+'">'+(CEXT===o.k?'Cancelar':(par?'Ligar a outro item':'É um item do pedido'))+'</button>':'')
+    +'<button class="btn" data-oca="'+esc(o.k)+'">Aceitar como item a mais</button></div>';
+   if(CEXT===o.k&&fal.length)h+='<div class="esc"><p class="hint" style="margin:0 0 4px">Qual item do pedido corresponde a este da nota?</p>'
+    +fal.map(k=>{const q=M.PD2[k];
+     return '<button class="pbr'+(k===par?' on':'')+'" data-ocp="'+esc(o.k)+'#'+esc(k)+'"><span class="pbn">'+esc(q.desc)+(k===par?' <span class="badge c-warn">provável</span>':'')+'</span><span class="pbm2">'+(q.cod?'cód. '+esc(q.cod)+' · ':'')+nfmt(q.un)+' un'+(q.ean?'<br><span class="ean">'+esc(soNum(q.ean))+'</span>':'')+'</span><span class="pbp">→</span></button>'}).join('')+'</div>'}
+  if(o.t==='novo'&&o.k)h+='<div class="btns"><button class="btn" data-ocd="'+esc(o.k)+'">Desfazer</button></div>';
+  if((o.t==='aj'||o.t==='at')&&a)h+='<label class="chk"><input type="checkbox" data-a="'+esc(a.key)+'"'+(adj.has(a.key)?' checked':'')+'> Preço já ajustado no ERP</label>';
+  h+='</div>'});
+ if(a){
+  h+='<div class="shsec">NÚMEROS</div><div class="shnum">'
+   +'<div><small>'+(a.kg&&!a.wk?'Custo por kg':'Custo na nota')+'</small><b>'+R(a.custo)+'</b></div>'
+   +'<div><small>Preço de venda</small><b>'+(a.s==='cad'?'—':R(a.venda))+'</b></div>'
+   +'<div><small>Lucro s/ venda</small><b'+(a.lv!=null?' class="r-'+a.s+'"':'')+'>'+(a.lv!=null?pc(a.lv):'—')+'</b></div>'
+   +'<div><small>Preço sugerido</small><b>'+R(a.sug)+'</b></div></div>'
+   +'<p class="hint">Faixa esperada '+String(P.min).replace('.',',')+'% a '+String(P.max).replace('.',',')+'%'+(P.ded?' (após −'+String(P.ded).replace('.',',')+' pts)':'')
+   +(a.cE>0?' · custo no ERP '+R(a.cE)+(a.vcl==='igual'?' (sem alteração)':a.vcl?' ('+pvr(a)+')':''):' · custo no ERP não informado')+'</p>'
+   +(a.how?'<p class="hint">EAN na Grade: <b>'+esc(soNum(a.eanm||''))+'</b> ('+esc(a.how)+')</p>':'')
+   +(a.of?'<p class="hint">Em oferta no ERP: o preço atual pode ser o de oferta.</p>':'')
+   +(a.nota?'<p class="hint">Embalagem: '+esc(a.nota)+'</p>':'')
+   +(a.chk?'<p class="hint err">Conferir unidades ou reajuste: o custo unitário está '+(a.dv>0?'+':'')+(a.dv*100).toFixed(0)+'% em relação ao ERP.</p>':'');
+  const hi=x.cod?histItem(x.cod,x.ean,LOJA):null;
+  if(hi)h+='<div class="shsec">COMPRAS ANTERIORES</div><p class="hint">'+histResumo(hi)+'</p>'}
+ h+='<div class="btns" style="margin-top:14px"><button class="btn pri" data-shi="'+esc(x.key)+'">Mandar este item</button><button class="btn" data-shx="1">Fechar</button></div><p id="shim" class="hint"></p>';
+ el.innerHTML=h;el.hidden=false;bg.hidden=false;document.body.style.overflow='hidden';el.scrollTop=0}
+
 function draw(){
  try{xetapa()}catch(e){}
  banner();
  const res=$('#res');
- if(!idx.size){res.innerHTML='<p class="hint">Carregue a Grade do ERP para conferir as notas.</p>';return}
- if(!raw.length){res.innerHTML='';return}
+ if(!idx.size){res.innerHTML='<p class="hint">Carregue a Grade do ERP para conferir as notas.</p>';CSEL='';CMAIS=false;sheetDraw();return}
+ if(!raw.length){res.innerHTML='';CSEL='';CMAIS=false;sheetDraw();return}
  const A=raw.map(analisa).sort((a,b)=>ORD[a.s]-ORD[b.s]);
  let lc=0;A.forEach(a=>{if(a.learn&&!demo){setMem(a.learn.k,a.learn.f,'a',a.learn.w);lc++}});if(lc){LS.set('mem',MEM);params()}
  const n0=raw[0]||{},tot=Math.round(A.reduce((s,x)=>s+(x.vp||0),0)*100)/100;
  const nfs=[...new Map(raw.map(i=>[i.nf,i])).values()];
  const pv=demo?null:(PED.find(x=>x.nf&&n0.nf&&String(x.nf)===String(n0.nf))||null),ipv=pv?PED.indexOf(pv):-1;
  const O=pv?ocorrencias(pv):[];
- const Lcad=A.filter(a=>a.s==='cad'||a.s==='emb'),
-       Lmar=A.filter(a=>(a.s==='aj'||a.s==='at')&&!adj.has(a.key)),
-       Lok=A.filter(a=>a.s==='ok'||((a.s==='aj'||a.s==='at')&&adj.has(a.key)));
- const AJn=ajustesERP(pv).filter(o=>o.t!=='cad').length;
- const G={fat:O.filter(o=>o.t!=='novo').length,cad:Lcad.length+AJn,mar:Lmar.length,ok:Lok.length};
- const tp=G.fat+G.cad+G.mar;
- let h='<div class="box"><div class="row" style="margin:0"><b class="rt">Conferência · NF '+esc(n0.nf||'—')+'</b><span class="rbt">'
-  +(pv?'':'<button class="chip go" data-g="fat">Vincular a um pedido</button>')
+ const L=itensConf(pv),CT=cfConta(L);
+ if(CGRP){CFIL={fat:'pedido',cad:'cad',mar:'preco',ok:'ok'}[CGRP]||'';CGRP=''}
+ let fl=CFIL||cfilD();
+ if(!CFIL&&!CT[fl])fl=CT.pend?'pend':'tudo';
+ let h='<div class="box">';
+ h+='<div class="row" style="margin:0"><b class="rt">NF '+esc(n0.nf||'—')+'</b><span class="rbt">'
+  +(pv?'':'<button class="chip go" data-vinc="1">Vincular pedido</button>')
   +'<button class="chip" data-xpn="1">'+(XVOLTA?'Ocultar painel':'Painel')+'</button></span></div>';
- h+='<div class="meta">'+esc((n0.forn||'').slice(0,40))+(n0.dt?' · '+n0.dt.split('-').reverse().join('/'):'')+' · '+A.length+' itens · '+R(tot)+'</div>';
- if(pv)h+='<div class="meta">Pedido: <b>'+esc((pv.forn||'sem fornecedor').slice(0,30))+'</b> · '+(pv.loja?esc(pv.loja)+' · ':'')+hora(pv.ts)+' · '+R(pv.total)+(pv.status==='recebido'?' · <span class="badge c-ok">Recebida</span>':'')+'</div>';
- else h+='<div class="meta">Pedido: <b>não vinculado</b> — toque em <b>Vincular a um pedido</b> para cruzar a nota com o que foi comprado.</div>';
- h+='<p class="'+(tp?'hint err':'hint r-ok')+'" style="margin:8px 0 0">'+(tp?tp+(tp===1?' ponto a conferir':' pontos a conferir')+' nos blocos em destaque':'Nada pendente: nota conferida')+'</p>';
- h+='<div class="grp">'+GRPS.map(g=>{const k=g[0],n=G[k],z=!n&&!(k==='fat'&&!pv);
-  const cl=k==='ok'?'okk':(k==='fat'?'bad':k==='cad'?'bad':'warn');
-  return '<button class="gb'+(CGRP===k?' on':'')+' '+(z?'zero':cl)+'" data-g="'+k+'"><span class="n">'+(k==='fat'&&!pv?'!':n)+'</span><b>'+g[1]+'</b><small>'+(k==='fat'&&!pv?'vincular o pedido':g[2])+'</small></button>'}).join('')+'</div>';
- if(!CGRP)h+='<p class="hint">Toque em um bloco para ver os itens.</p>';
- if(CGRP)h+='<div class="gcont">';
- if(CGRP==='fat'){
-  if(!pv)h+=vincLista();
-  else{
-   const M2=confrontoMapa(pv),fal=M2?Object.keys(M2.PD2).filter(k=>!M2.NT[k]&&!M2.PD2[k].troca):[];
-   h+=O.length?'<p class="t2">'+O.length+(O.length===1?' divergência entre a nota e o pedido':' divergências entre a nota e o pedido')+'</p>'+ocOrdena(O).map(o=>{
-     let x=ocLinha(o);
-     if(o.t==='extra'&&o.k){
-      x+='<div class="btns" style="margin:2px 0 10px">'
-       +(fal.length?'<button class="btn" data-ocv="'+esc(o.k)+'">'+(CEXT===o.k?'Cancelar':'É um item do pedido')+'</button>':'')
-       +'<button class="btn" data-oca="'+esc(o.k)+'">Aceitar como item a mais</button></div>';
-      if(CEXT===o.k&&fal.length)x+='<div class="esc"><p class="hint" style="margin:0 0 4px">Qual item do pedido corresponde a este da nota?</p>'
-       +fal.map(k=>{const q=M2.PD2[k];
-        return '<button class="pbr" data-ocp="'+esc(o.k)+'#'+esc(k)+'"><span class="pbn">'+esc(q.desc)+'</span><span class="pbm2">'+(q.cod?'cód. '+esc(q.cod)+' · ':'')+nfmt(q.un)+' un'+(q.ean?'<br><span class="ean">'+esc(q.ean)+'</span>':'')+'</span><span class="pbp">→</span></button>'}).join('')+'</div>'}
-     if(o.t==='novo'&&o.k)x+='<div class="btns" style="margin:2px 0 10px"><button class="btn" data-ocd="'+esc(o.k)+'">Desfazer</button></div>';
-     return x}).join('')
-    :'<p class="hint r-ok">A nota confere com o pedido: quantidades e preços conforme o combinado.</p>';
-   if(pv.cruz&&Object.keys(pv.cruz).length)h+='<p class="hint r-ok">✔ '+Object.keys(pv.cruz).length+' item(ns) da nota ligados ao pedido por você. <button class="chip" data-ocz="1">desfazer todos</button></p>';
-   h+='<div class="btns"><button class="btn" data-pped="1">'+(CDIV?'Ocultar o pedido':'Ver o pedido completo ('+pv.itens.length+' itens)')+'</button><button class="btn" data-pdes="'+ipv+'">Desvincular</button></div>';
-   if(CDIV)h+='<div class="plinhas">'+(()=>{const M=confrontoMapa(pv);return pv.itens.slice().sort((a,b)=>H(a.desc).localeCompare(H(b.desc))).map(i=>pedLinha(i,M)).join('')})()+'</div>';
-  }
- }
- if(CGRP==='cad'){
-  if(A.length>=5&&A.filter(a=>a.s==='cad').length/A.length>0.3)h+='<div class="hint err">Muitos itens não cadastrados. Confirme se a Grade do ERP está atualizada.</div>';
-  h+=nfs.map(n=>{const its=raw.filter(i=>i.nf===n.nf),un={};its.forEach(i=>{const u=i.uT||'?';un[u]=(un[u]||0)+1});
-   const se=its.filter(i=>!nz(i.cT)&&!nz(i.cE)).length,pm=FORN[n.cnpj]||'';
-   return '<div class="meta">Unidades lidas: '+Object.entries(un).map(e=>esc(e[0])+' ('+e[1]+')').join(', ')+(se?' · <span class="err">'+se+' sem código de barras</span>':'')
-    +(n.cnpj?'<br><label>Quantidade do XML vem em <select data-p="'+esc(n.cnpj)+'"><option value="">Automático</option><option value="emb"'+(pm==='emb'?' selected':'')+'>Embalagem (Fd/Cx)</option><option value="un"'+(pm==='un'?' selected':'')+'>Unidade</option></select></label>':'')+'</div>'}).join('');
-  h+=Lcad.length?Lcad.map(a=>itemCard(a,pv)).join(''):'<p class="hint r-ok">Todos os itens estão cadastrados e com a embalagem definida.</p>';
-  const AJ=ajustesERP(pv);
-  if(AJ.length){h+='<p class="t2" style="margin-top:14px">Ajustes para fazer no ERP ('+AJ.length+')</p>'
-   +'<p class="hint">O que corrigir no cadastro para a próxima entrada desta nota não errar.</p>'
-   +AJ.map(ajLinha).join('')
-   +'<div class="btns"><button class="btn" data-aj="share">Compartilhar ajustes</button><button class="btn" data-aj="copy">Copiar texto</button></div><p id="ajm" class="hint"></p>'}
- }
- if(CGRP==='mar'){
-  const c={alta:0,baixa:0,igual:0,nd:0};A.forEach(a=>{if(a.vcl)c[a.vcl]++;else if(a.cod)c.nd++});
-  h+='<div class="hint">Custo vs ERP: <b>▲ '+c.alta+'</b> subiram · <b>▼ '+c.baixa+'</b> caíram · '+c.igual+' sem alteração'+(c.nd?' · '+c.nd+' sem custo no ERP':'')+'</div>';
-  h+=Lmar.length?Lmar.map(a=>itemCard(a,pv)).join(''):'<p class="hint r-ok">Nenhum preço fora da faixa esperada.</p>';
- }
- if(CGRP==='ok')h+=Lok.length?Lok.map(itemLinha).join(''):'<p class="hint">Nenhum item liberado ainda.</p>';
- if(CGRP)h+='</div>';
- h+='<div class="btns">'+(pv&&pv.status!=='recebido'?'<button class="btn pri" data-prec2="'+ipv+'">Marcar como recebido</button>':'')
-  +'<button class="btn" data-ex="1">Exportar (CSV)</button><button class="btn" data-cl="1">Enviar para a nuvem</button><button class="btn" data-shw="1">Compartilhar lista</button><button class="btn" data-tn="1">Outra nota</button><button class="btn" data-lp="1">Limpar</button></div><p id="exmsg" class="hint"></p><p id="cfm" class="hint"></p>';
- if(CSH)h+='<div class="btns" style="margin-top:6px"><button class="btn pri" data-sh="share">Compartilhar</button><button class="btn" data-sh="copy">Copiar texto</button></div><p id="shmsg" class="hint"></p><textarea id="ta" class="ta" readonly rows="9">'+esc(textoLista(A,nfs))+'</textarea>';
+ h+='<div class="meta mt1">'+esc(n0.forn||'')+' · '+A.length+' itens · '+R(tot)+'</div>';
+ if(pv)h+='<div class="meta">✔ Pedido'+(pv.loja?' · '+esc(pv.loja):'')+' · '+R(pv.total)+(pv.status==='recebido'?' · <span class="badge c-ok">Recebida</span>':'')+'</div>';
+ else h+='<div class="meta">Sem pedido vinculado — confere só cadastro e preço.</div>';
+ h+='<p class="'+(CT.pend?'hint err':'hint r-ok')+'" style="margin:8px 0 0">'
+  +(CT.pend?'<b>'+CT.pend+(CT.pend===1?' item</b> a resolver':' itens</b> a resolver'):'Nota conferida: nada pendente')+'</p>';
+ if(!pv)h+=vincLista();
+ h+='<div class="cfc">'+CFF.map(g=>{const n=CT[g[0]];
+  return '<button class="cfk'+(fl===g[0]?' on':'')+(n?'':' zz')+'" data-cf="'+g[0]+'">'+g[1]+' <b>'+n+'</b></button>'}).join('')+'</div>';
+ const LF=cfOrdena(L.filter(x=>cfPassa(x,fl)));
+ h+=LF.length?'<div class="cfl">'+LF.map(cfLinha).join('')+'</div>'
+  :'<p class="hint">Nada neste filtro.</p>';
+ if(LF.length&&fl!=='ok')h+='<p class="hint" style="margin:8px 0 0">Toque em um item para ver o que fazer.</p>';
+ {const pri=CT.pend?['shp','Mandar as '+CT.pend+' pendências']
+   :(pv&&pv.status!=='recebido'?['prec2','Marcar como recebido']:['tn','Conferir outra nota']);
+  h+='<div class="cfbar"><button class="btn pri" data-'+pri[0]+'="'+(pri[0]==='prec2'?ipv:'1')+'">'+pri[1]+'</button>'
+   +'<button class="btn dots" data-cmais="1" aria-label="Mais ações">···</button></div>'}
+ h+='<p id="cfm" class="hint"></p>';
  res.innerHTML=h+'</div>';
+ sheetDraw();
  try{if(raw.length&&!demo)nfGuarda(raw.map(analisa));xetapa()}catch(e){}
 }
 
@@ -939,6 +1116,9 @@ function params(){
  h+='<div class="pg"><label>Somar ICMS-ST e IPI ao custo</label><select data-k="st"><option value="1"'+(P.st?' selected':'')+'>Sim</option><option value="0"'+(P.st?'':' selected')+'>Não</option></select></div>';
  h+='<div class="pg"><label>Arredondar preço sugerido</label><select data-k="arr"><option value="0"'+(P.arr==='0'?' selected':'')+'>Centavos</option><option value="90"'+(P.arr==='90'?' selected':'')+'>Para cima, final ,90</option></select></div>';
  h+='<div class="pg" style="grid-template-columns:1fr"><label>Unidades que contam como embalagem (separe por vírgula)</label><input data-k="pack" value="'+esc(P.pack)+'"></div>';
+ {const d0=cfilD();
+  h+='<div class="pg"><label>Conferir abre mostrando</label><select data-cfd="1">'
+   +CFF.map(g=>'<option value="'+g[0]+'"'+(d0===g[0]?' selected':'')+'>'+g[1]+'</option>').join('')+'</select></div>'}
  $('#pp').innerHTML=h;
  let e2='';
  const ks=Object.keys(MEM);
@@ -950,7 +1130,9 @@ function params(){
  $('#ppe').innerHTML=e2;
  przDraw();lojaDraw()}
 
-$('#pp').onchange=e=>{const k=e.target.dataset.k;if(!k)return;const v=e.target.value;
+$('#pp').onchange=e=>{
+ if(e.target.dataset.cfd){LS.set('cfild',e.target.value);CFIL='';draw();return}
+ const k=e.target.dataset.k;if(!k)return;const v=e.target.value;
  if(k==='st')P.st=v==='1';else if(k==='arr')P.arr=v;else if(k==='pack')P.pack=v.trim();else{const n=num(v);if(n>0||(k==='ded'&&n===0&&v.trim()!==''))P[k]=n}
  LS.set('params',P);params();draw()};
 
@@ -958,8 +1140,16 @@ $('#ppe').onclick=e=>{const x=e.target.dataset.x,y=e.target.dataset.y;
  if(y){delete LINK[y];delete LKTS[y];LS.set('link',LINK);LS.set('lkts',LKTS);params();draw();return}
  if(x){delete MEM[x];LS.set('mem',MEM);params();draw()}};
 $('#res').onclick=e=>{const f=e.target.dataset.f,u=e.target.dataset.u,l=e.target.dataset.l,v=e.target.dataset.v,sh=e.target.dataset.sh,ex=e.target.dataset.ex,lp=e.target.dataset.lp,cl=e.target.dataset.cl;
- const bt=e.target.closest?e.target.closest('[data-pnf],[data-prec2],[data-pdiv],[data-g],[data-xpn],[data-tn],[data-shw],[data-pdes],[data-pped],[data-ocv],[data-oca],[data-ocd],[data-ocz],[data-ocp],[data-aj]'):null,t=(bt&&bt.dataset)||e.target.dataset;
+ const bt=e.target.closest?e.target.closest('[data-pnf],[data-prec2],[data-pdiv],[data-g],[data-xpn],[data-tn],[data-shw],[data-pdes],[data-pped],[data-ocv],[data-oca],[data-ocd],[data-ocz],[data-ocp],[data-aj],[data-ci],[data-cf],[data-cmais],[data-shx],[data-shi],[data-shp],[data-shl],[data-vinc]'):null,t=(bt&&bt.dataset)||e.target.dataset;
  if(cl){confEnvia();return}
+ if(t.cf!=null){CFIL=t.cf;draw();return}
+ if(t.ci!=null){CSEL=t.ci;CMAIS=false;CEXT='';sheetDraw();return}
+ if(t.cmais!=null){CMAIS=true;CSEL='';CDIV=false;sheetDraw();return}
+ if(t.shx!=null){sheetFecha();return}
+ if(t.vinc!=null){CMAIS=false;CSEL='';CFIL='pedido';draw();try{const v=$('#res');if(v)v.scrollIntoView({block:'start'})}catch(e2){}return}
+ if(t.shi!=null){const x=itensConf(pedVinc()).find(y=>y.key===t.shi);if(x)shTexto(itemTexto(x),'#shim');return}
+ if(t.shp!=null){shTexto(cfTexto(itensConf(pedVinc())),CMAIS?'#cfm2':'#cfm');return}
+ if(t.shl!=null){const A2=raw.map(analisa).sort((a,b)=>ORD[a.s]-ORD[b.s]),nfs2=[...new Map(raw.map(i=>[i.nf,i])).values()];shTexto(textoLista(A2,nfs2),CMAIS?'#cfm2':'#cfm');return}
  if(t.g!=null){CGRP=CGRP===t.g?'':t.g;CDIV=false;CEXT='';draw();return}
  if(t.ocv!=null){CEXT=(CEXT===t.ocv)?'':t.ocv;draw();return}
  if(t.oca!=null){const p=pedVinc();if(p){p.aceitos=(p.aceitos||[]).concat([t.oca]);LS.set('pedidos',PED);pdEnvia(p).catch(()=>{})}CEXT='';draw();return}
@@ -973,26 +1163,22 @@ $('#res').onclick=e=>{const f=e.target.dataset.f,u=e.target.dataset.u,l=e.target
    if(eanNota&&codPed&&byCod.has(String(codPed))){LINK[eanNota]=String(codPed);LKTS[eanNota]=Date.now();LS.set('link',LINK);LS.set('lkts',LKTS);if(logado())embSync(true);SR={}}
    LS.set('pedidos',PED);pdEnvia(p).catch(()=>{})}
   CEXT='';draw();return}
- if(t.xpn!=null){XVOLTA=!XVOLTA;xetapa();if(XVOLTA)try{window.scrollTo(0,0)}catch(e2){}return}
- if(t.tn!=null){XPASSO='nf';XVOLTA=true;xetapa();try{window.scrollTo(0,0)}catch(e2){}return}
- if(t.shw!=null){CSH=!CSH;draw();return}
+ if(t.xpn!=null){sheetFecha();XVOLTA=!XVOLTA;xetapa();if(XVOLTA)try{window.scrollTo(0,0)}catch(e2){}return}
+ if(t.tn!=null){sheetFecha();XPASSO='nf';XVOLTA=true;xetapa();try{window.scrollTo(0,0)}catch(e2){}return}
+ if(t.shw!=null){const A3=raw.map(analisa).sort((a,b)=>ORD[a.s]-ORD[b.s]),nf3=[...new Map(raw.map(i=>[i.nf,i])).values()];shTexto(textoLista(A3,nf3),'#cfm');return}
  if(t.aj!=null){
   const AJ=ajustesERP(pedVinc()),n0=raw[0]||{},tx2=ajTexto(AJ,n0),m=$('#ajm');
   if(!AJ.length){if(m)m.textContent='Nada a ajustar.';return}
-  if(t.aj==='share'&&navigator.share){navigator.share({title:'Ajustes no ERP',text:tx2}).catch(()=>{});return}
-  (navigator.clipboard?navigator.clipboard.writeText(tx2):Promise.reject())
-   .then(()=>{if(m){m.className='hint';m.textContent='✓ Texto copiado. Cole para quem faz o cadastro.'}})
-   .catch(()=>{if(m){m.className='hint';m.innerHTML='<textarea class="ta" rows="7" readonly>'+esc(tx2)+'</textarea>'}});
-  return}
+  shTexto(tx2,'#ajm');return}
  if(t.pped!=null||t.pdiv!=null){CDIV=!CDIV;draw();return}
- if(t.pdes!=null){const q=PED[+t.pdes];if(q){q.nf='';q.status='conf';LS.set('pedidos',PED);pddraw();if(logado()&&q.id)sb('/rest/v1/pedidos?id=eq.'+encodeURIComponent(q.id),{method:'PATCH',headers:{Prefer:'return=minimal'},body:{status:'conf',itens:q.itens}}).catch(()=>{})}draw();return}
+ if(t.pdes!=null){CMAIS=false;CSEL='';const q=PED[+t.pdes];if(q){q.nf='';q.status='conf';LS.set('pedidos',PED);pddraw();if(logado()&&q.id)sb('/rest/v1/pedidos?id=eq.'+encodeURIComponent(q.id),{method:'PATCH',headers:{Prefer:'return=minimal'},body:{status:'conf',itens:q.itens}}).catch(()=>{})}draw();return}
  if(t.pnf!=null){const p=PED[+t.pnf];if(p){p.status='nf';p.nf=(raw[0]&&raw[0].nf)||'';p.chave=(raw[0]&&raw[0].chave)||'';
    p.conferidos=raw.map(analisa).map(a=>confronto(a,p)).filter(r=>r.it).length;
    LS.set('pedidos',PED);pddraw();draw();
    if(logado()&&p.id)sb('/rest/v1/pedidos?id=eq.'+encodeURIComponent(p.id),{method:'PATCH',headers:{Prefer:'return=minimal'},body:{status:'nf',itens:p.itens}}).catch(()=>{});
-   CGRP='';XVOLTA=false;XPASSO='';draw();try{window.scrollTo(0,0)}catch(e2){}
+   CGRP='';CFIL='';CSEL='';CMAIS=false;XVOLTA=false;XPASSO='';draw();try{window.scrollTo(0,0)}catch(e2){}
    const m=$('#cfm');if(m){m.className='hint';m.textContent='✓ Nota '+(p.nf||'')+' vinculada ao pedido de '+(p.forn||'sem fornecedor')+'.'}}return}
- if(t.prec2!=null){pdStatus(+t.prec2,'recebido');draw();return}
+ if(t.prec2!=null){sheetFecha();pdStatus(+t.prec2,'recebido');draw();return}
  if(lp){limpar();return}
  if(ex){baixaCSV();return}
  if(v){VISTA=v;LS.set('vista',VISTA);draw();return}
@@ -1000,6 +1186,13 @@ $('#res').onclick=e=>{const f=e.target.dataset.f,u=e.target.dataset.u,l=e.target
  if(l){const i=l.lastIndexOf('#');LINK[l.slice(0,i)]=l.slice(i+1);LKTS[l.slice(0,i)]=Date.now();LS.set('link',LINK);LS.set('lkts',LKTS);if(logado())embSync(true);SR={};params();draw();return}
  if(u){const i=u.lastIndexOf('#');setMem(u.slice(0,i),+u.slice(i+1),'m');LS.set('mem',MEM);params();draw();return}
  if(f){filtro=f;draw()}};
+$('#sheet').onclick=e=>{
+ const b=e.target.closest?e.target.closest('[data-shx]'):null;
+ if(b){sheetFecha();return}
+ try{$('#res').onclick(e)}catch(err){}};
+$('#sheet').onchange=e=>{try{$('#res').onchange(e)}catch(err){}};
+$('#shbg').onclick=()=>sheetFecha();
+try{document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(CSEL||CMAIS))sheetFecha()})}catch(e){}
 $('#res').onchange=e=>{
  if(e.target.dataset.psel){PSEL2=e.target.value;LS.set('pedsel',PSEL2);draw();return}
  const ww=e.target.dataset.w,ss=e.target.dataset.s;
@@ -1040,7 +1233,7 @@ $('#fx').onchange=async e=>{
  m.className='hint';m.textContent='';
  for(const f of fs){
   addXml(dec(await f.arrayBuffer()),f.name)}
- CGRP=XVINC?'fat':'';CSH=false;XVOLTA=false;XPASSO='';
+ CGRP=XVINC?'fat':'';CSH=false;CFIL='';CSEL='';CMAIS=false;XVOLTA=false;XPASSO='';
  draw();ckStatus();try{window.scrollTo(0,0)}catch(e2){}};
 
 
@@ -1663,13 +1856,14 @@ function simDesc(a,b){
  return i/Math.min(A.size,B.size)}
 function confrontoMapa(p){
  if(!p||!raw.length||demo)return null;
- const A=raw.map(analisa),PD2={},NT={};
+ const A=raw.map(analisa),PD2={},NT={},KI={};
  p.itens.forEach(i=>{const k=kped(i),u=(i.q||0)*(pdEmb(i)||1),o=PD2[k]||(PD2[k]={k:k,un:0,v:0,desc:i.desc,cod:i.cod||'',ean:i.ean||'',n:0});
   o.un+=u;o.v+=(pdUnit(i)||0)*u;o.n++});
  A.forEach(a=>{
   let k=a.cod?'c'+String(a.cod):'';
   if(!k||!PD2[k]){const al=cands({cT:a.cT,cE:a.ek}),hit=p.itens.find(i=>i.ean&&al.indexOf(nz(i.ean))>=0);if(hit)k=kped(hit)}
   if(!k)k=a.ek?'e'+a.ek:'d'+H(a.desc||'');
+  KI[a.key]=k;
   const u=unXml(a),o=NT[k]||(NT[k]={k:k,un:0,v:0,desc:a.desc,cod:a.cod||'',ean:a.ek||'',n:0});
   o.un+=u;o.v+=(a.custo||0)*u;o.n++});
  const cruz=(p.cruz&&typeof p.cruz==='object')?p.cruz:{};
@@ -1678,7 +1872,8 @@ function confrontoMapa(p){
   const d=NT[kn];
   if(NT[kp]){NT[kp].un+=d.un;NT[kp].v+=d.v;NT[kp].n+=d.n}
   else NT[kp]={k:kp,un:d.un,v:d.v,desc:d.desc,cod:PD2[kp].cod||d.cod,ean:d.ean,n:d.n,cruzado:kn};
-  delete NT[kn]});
+  delete NT[kn];
+  Object.keys(KI).forEach(ik=>{if(KI[ik]===kn)KI[ik]=kp})});
  const aceitos=(p.aceitos&&p.aceitos.length)?p.aceitos:[];
  aceitos.forEach(k=>{if(NT[k])NT[k].aceito=true});
  const faltas=Object.keys(PD2).filter(k=>!NT[k]),extras=Object.keys(NT).filter(k=>!PD2[k]&&!NT[k].aceito),pares=[];
@@ -1686,7 +1881,7 @@ function confrontoMapa(p){
  pares.sort((a,b)=>b[0]-a[0]);
  const uf={},ue={};
  pares.forEach(([v,f,e])=>{if(uf[f]||ue[e])return;uf[f]=ue[e]=1;PD2[f].troca=e;NT[e].troca=f});
- return {A:A,PD2:PD2,NT:NT,casou:Object.keys(NT).some(k=>PD2[k])}}
+ return {A:A,PD2:PD2,NT:NT,KI:KI,casou:Object.keys(NT).some(k=>PD2[k])}}
 function statusItemNota(M,k){
  if(!M)return null;
  const n=M.NT[k],q=M.PD2[k];
